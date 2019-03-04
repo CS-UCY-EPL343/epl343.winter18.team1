@@ -61,15 +61,15 @@ Route::get('CollaboratorsDestroy', 'PagesController@getCollaboratorsDestroy');
 
 Route::get('collaborators', 'CollaboratorController@index');
 
-Route::post('articles', 'NewsController@store');
+Route::get('articles', 'PagesController@getArticles');
 
-Route::post('ArticlesUpdate', 'NewsController@update');
+Route::get('ArticlesUpdate', 'PagesController@getArticlesUpdate');
 
-Route::post('ArticlesDestroy', 'NewsController@destroy');
+Route::get('ArticlesDestroy', 'PagesController@getArticlesDestroy');
 
-Route::post('ArticlesAdd', 'NewsController@store');
+Route::get('ArticlesAdd', 'PagesController@getArticlesAdd');
 
-Route::get('articles', 'ArticlesController@index');
+Route::get('articles', 'NewsController@index');
 
 Route::get('rights', 'PagesController@getRights');
 
@@ -129,13 +129,13 @@ Route::post('CollaboratorsUpdate', 'CollaboratorController@update');
 
 Route::post('CollaboratorsDestroy', 'CollaboratorController@destroy');
 
-Route::post('articles', 'ArticlesController@store');
+Route::post('articles', 'NewsController@store');
 
-Route::post('ArticlesUpdate', 'ArticlesController@update');
+Route::post('ArticlesUpdate', 'NewsController@update');
 
-Route::post('ArticlesDestroy', 'ArticlesController@destroy');
+Route::post('ArticlesDestroy', 'NewsController@destroy');
 
-Route::post('ArticlesAdd', 'ArticlesController@store');
+Route::post('ArticlesAdd', 'NewsController@store');
 
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
