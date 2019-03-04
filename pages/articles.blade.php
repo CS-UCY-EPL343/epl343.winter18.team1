@@ -359,6 +359,7 @@
                             @foreach($ARTICLE as $row)
                             <tr>
                                 <td>{{$row->ARTICLE_ID}}</td>
+                                <td>{{$row->TITLE}}</td>
                                 <td>{{$row->DOCUMENT}}</td>
                                 <td>{{$row->POSITION}}</td>
                                 <td style="text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer;" onclick="document.getElementById('id01{{$row->ARTICLE_ID}}').style.display='block'"></i></td>
@@ -370,7 +371,14 @@
                                         {{csrf_field()}}
                                         <div class="container" style="padding: 16px;">
                                             <div class="row">
-                                                <div class="col-sm-9">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="form_name">Title</label>
+                                                        <textarea id="form_message" name="TITLE" class="form-control" placeholder="Write your Title.." rows="5">{{$row->TITLE}}</textarea>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_name">Document</label>
                                                         <textarea id="form_message" name="DOCUMENT" class="form-control" placeholder="Write your article.." rows="5">{{$row->DOCUMENT}}</textarea>
@@ -432,6 +440,13 @@
                                         {{csrf_field()}}
                                         <div class="container" style="padding: 16px;">
                                             <div class="row">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="form_name">Title</label>
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="TITLE" type="text" name="TITLE" class="form-control" placeholder="Please enter the article's title *" required="required" data-error="Title is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_name">Position</label>
