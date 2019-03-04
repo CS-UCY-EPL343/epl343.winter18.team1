@@ -61,13 +61,13 @@ Route::get('CollaboratorsDestroy', 'PagesController@getCollaboratorsDestroy');
 
 Route::get('collaborators', 'CollaboratorController@index');
 
-Route::get('articles', 'PagesController@getArticles');
+Route::post('articles', 'NewsController@store');
 
-Route::get('ArticlesUpdate', 'PagesController@getArticlesUpdate');
+Route::post('ArticlesUpdate', 'NewsController@update');
 
-Route::get('ArticlesDestroy', 'PagesController@getArticlesDestroy');
+Route::post('ArticlesDestroy', 'NewsController@destroy');
 
-Route::get('ArticlesAdd', 'PagesController@getArticlesAdd');
+Route::post('ArticlesAdd', 'NewsController@store');
 
 Route::get('articles', 'ArticlesController@index');
 
