@@ -48,8 +48,9 @@ class NewsController extends Controller
 
         $DOCUMENT = $req->input('DOCUMENT');
         $POSITION = $req->input('POSITION');
+        $TITLE = $req->input('TITLE');
         
-        $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'POSITION'=>$POSITION);
+        $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'POSITION'=>$POSITION,'TITLE'=>$TITLE);
 
         \DB::table('ARTICLE')->insert($data);
 
@@ -111,8 +112,9 @@ class NewsController extends Controller
         $record = $req->input('ARTICLE_ID');
         $DOCUMENT = $req->input('DOCUMENT');
         $POSITION = $req->input('POSITION');
+        $TITLE = $req->input('TITLE');
 
-        $data = array('DOCUMENT'=>$DOCUMENT,'POSITION'=>$POSITION);
+        $data = array('DOCUMENT'=>$DOCUMENT,'POSITION'=>$POSITION,'TITLE'=>$TITLE);
 
         \DB::table('ARTICLE')->where('ARTICLE_ID',$record)->update($data);
         return redirect()->back();
