@@ -71,6 +71,12 @@ Route::post('ArticlesAdd', 'NewsController@store');
 
 Route::get('articles', 'ArticlesController@index');
 
+Route::get('rights', 'PagesController@getRights');
+
+Route::get('RightsUpdate', 'PagesController@getRightsUpdate');
+
+Route::get('rights', 'RightsController@index');
+
 Route::get('TermsAndConditions', 'PagesController@getTermsAndConditions');
 
 Route::get('PrivacyPolicy', 'PagesController@getPrivacyPolicy');
@@ -112,6 +118,10 @@ Route::post('employees', 'EmployeesController@store');
 Route::post('EmployeesUpdate', 'EmployeesController@update');
 
 Route::post('EmployeesDestroy', 'EmployeesController@destroy');
+
+Route::post('rights', 'RightsController@store');
+
+Route::post('RightsUpdate', 'RightsController@update');
 
 Route::post('collaborators', 'CollaboratorController@store');
 
