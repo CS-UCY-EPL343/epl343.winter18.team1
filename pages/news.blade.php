@@ -195,89 +195,27 @@ stylize any heading tags withing white-panel below
   <div class="container-fluid" style="margin-top: 40px; color: white;">
     <h1>Latest News</h1>
   </div>
+  
+  
 	<div class="container-fluid" style="margin-top: -100px;">
   
     <section id="pinBoot">
 
-      <article class="white-panel"><img src="images/r7.jpg" alt="">
-        <h4>Current property market</h4>
-        <p>Cyprus is seen by many as the jewel of the Mediterranean, with is idyllic location and almost all year round sunshine, you might be thinking what else makes Cyprus the perfect place to live? Just last year residential sales in Cyprus increased with Limassol seeing up to a 36% growth in sales according to Cyprus Real Estate Market Report from PwC Cyprus.
- 
-        In 2018 we have seen the growth continuing due to  increased demand from foreign buyers predominately buying apartments within the city of Limassol (66% buying flats). The near future of buying and renting properties in Cyprus, especially Limassol is clear. 
-        </p>
+    @foreach($ARTICLE as $row)
+
+    <?$i = 1;?>
+    <!--"{{$row->IMAGE}}"-->
+    <!--document.getElementById('imageBox').src = "img/apple_" + total + ".png";-->
+    <!--<article class="white-panel"><img src="images/r+'$i'+.jpg" alt="">-->
+      <article class="white-panel"><img src="images/r+i+.jpg" alt="">
+        <h4>{{$row->TITLE}}</h4>
+        <p>{{$row->DOCUMENT}}</p>
       </article>
-
-      <article class="white-panel"> <img src="images/r8.jpg" alt="">
-        <h4>Sell or Rent Cyprus Property?</h4>
-        <p>Cyprus is a great place to live and is currently an excellent location to sell or let your property too. Just in the first 5 months of 2018 Cyprus saw a 31% increase to 3,612 sales of property compared to 2,767 the year before. 
- 
-        Deciding whether to sell or let your property can be a difficult decision as there are many different factors to consider such as your future housing plans, current property prices and your financial position. At Fox Smart whether you decide to sell or let your property, we are here to help you.
-         
-        Here at Fox Smart Estate Agents we make the selling and letting process simple. 
-        </p>
-      </article>
-
-      <article class="white-panel"> <img src="images/r9.jpg" alt="">
-        <h4>Selling your Cyprus property</h4>
-        <p>When deciding to part with a property, selling is the most popular choice, mostly due to obvious financial reasons. Selling a property and receiving the payout means that this can then be invested into a new property. As this is common, some buyers and sellers find themselves in a chain where they are waiting on the other homeowners to move on before the transaction can be completed. 
- 
-        We already have many highly sought after properties for sale in Cyprus on our website, your property could be one of them with our simple process!
-        </p>
-      </article>
-
-
-      <article class="white-panel"> <img src="images/r10.jpg" alt="">
-        <h4>Renting your Cyprus property</h4>
-        <p>The demand for properties to rent in Cyprus is rising, the countries growing economic stability and its ideal Mediterranean location are attracting more renters year on year.
-
-        Letting your property can be a great investment, many homeowners consider this when the property can be let for more than the owners outgoings of the property. A non-permanent move is another reason why you may let your property, if you are moving away and intending to return, then letting may be for you. 
-         
-        You must ensure that you are up to date with all legislation around letting your Cyprus property.
-        </p>
-      </article>
-
-      <article class="white-panel"> <img src="images/r4.jpg" alt="">
-        <h4>Tax breaks for NPL borrowers</h4>
-        <p>New legislation offers tax breaks to borrowers with Non-Performing Loans (NPLs). Specifically, when they wish to sell mortgaged property to pay off their loans, they can benefit from tax breaks.
- 
-        In the case of an ordinary property sale the state collects taxes in the following ways.
-         
-        The seller pays a 20% capital gains tax on the calculated sales profit. If the seller is considered a dealer in land income tax instead of capital gains tax is paid.
-         
-        It is understood that at the time of sale the seller must pay all sewage fees, municipal and state property taxes.
-        </p>
-      </article>
-
-      <article class="white-panel"> <img src="images/r1.jpg" alt="">
-        <h4>Helping hand</h4>
-        <p>Consequently, if the buyer had an NPL on 31/12/2015, sells the property to a third party for €200.000 and pays the whole amount in the loan, the state lends a helping hand by abolishing all of the above taxes, giving borrowers a chance to pay off banks.
- 
-        One of the main benefits of the new legislation is that it offers NPL borrowers an alternative to the pressure brought upon them by banks to sell to them at low prices. Borrowers can now shop around for interested buyers to sell to at a higher price and still enjoy the tax breaks.
-        </p>
-      </article>
-
-
-
-      <article class="white-panel"><img src="images/r2.jpg" alt="">
-        <h4>Large number of buyers buying affordable properties for cash</h4>
-        <p>What is more, he says, bonded transfers actually represented only 45% of all transfers that took place between April and September this year, with the rest being transfers as a result of cash purchases. But when it came to value, bonded transfers accounted for some 60% of the total.
-
-        “In other words, 55% of buyers currently are cash buyers whose transfers are only worth 40% of the total value - and that indicates a large number of buyers who are acquiring lower-priced properties for cash.” Statistics compiled for BetterBond by independent property data company Lightstone show that in real terms, the total number of transfers registered in the Deeds Office during the second and third quarters.</p>
-      </article>
-
-      <article class="white-panel"> <img src="images/r3.jpg" alt="">
-        <h4>The affordable property market is outperforming the rest</h4>
-        <p>In a recent evaluation of the total eight million South African properties,Lightstone revealed that the affordable sector (low and mid value) is by far the largest portion of the residential property market, amounting to 71,4% of the total volume of properties in South Africa.
-
-        Lightstone’s affordable property market is defined as properties with a Lightstone automated valuation of R 700 000 or less and a total of 94,2% of these properties are classified as freehold.</p>
-      </article>
+      $i++;
+    @endforeach
 
     </section>
-
-
-
 </div>
-
 	
 </body>
 
