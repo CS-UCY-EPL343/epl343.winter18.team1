@@ -11,20 +11,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>  
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
   </head>
   <link rel="stylesheet" type="text/css" href="{{ url('/css/sell.css') }}">
   <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background: linear-gradient(to left, #f4511e , #565671); color: black;">
-    @extends('main')
-    @section('navbar')
-  </ul>
-</div>
-
-</div>
-</nav>
-@endsection
+@include('main')
 <!-- Container (About Section) -->
-<div id="sell" class="container-fluid" style="margin-top: 80px;">
+<div id="sell" class="container-fluid">
 <div class="row col-sm-12" style="font-size: 36px; margin-top: 2px;">    
   <strong>Let us know how we can help you</strong>                           
 </div>
@@ -37,21 +30,21 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="form_name">Firstname *</label>
-          <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="FIRST_NAME" type="text" name="FIRST_NAME" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required."  maxLength="20">
+          <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="FIRST_NAME" type="text" name="FIRST_NAME" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
           <div class="help-block with-errors"></div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
           <label for="LAST_NAME">Lastname *</label>
-          <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="LAST_NAME" type="text" name="LAST_NAME" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." maxLength="20">
+          <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="LAST_NAME" type="text" name="LAST_NAME" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
           <div class="help-block with-errors"></div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="form_address">Address *</label>
-          <input id="ADDRESS" type="text" name="ADDRESS" class="form-control" placeholder="Please enter your address *" required="required" data-error="Address is required." maxLength="40">
+          <input id="ADDRESS" type="text" name="ADDRESS" class="form-control" placeholder="Please enter your address *" required="required" data-error="Address is required.">
           <div class="help-block with-errors"></div>
         </div>
       </div>
@@ -60,14 +53,14 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="form_email">Email *</label>
-          <input id="EMAIL" type="email" name="EMAIL" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required." maxLength="40">
+          <input id="EMAIL" type="email" name="EMAIL" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
           <div class="help-block with-errors"></div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="form_phone">Telephone*</label>
-          <input maxLength="30" id="TELEPHONE" type="text" pattern="\d*" name="TELEPHONE"  class="form-control" placeholder="Please enter your phone*" required oninvalid="setCustomValidity('Please enter your correct phone number ')"
+          <input id="TELEPHONE" type="number" name="TELEPHONE"  class="form-control" placeholder="Please enter your phone*" required oninvalid="setCustomValidity('Plz enter your correct phone number ')"
           onchange="try{setCustomValidity('')}catch(e){}" onkeypress="return isNumberKey(event)" onkeyup="lettersOnly(this)">
           
         </div>
@@ -111,7 +104,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="MESSAGE">Message (optional)</label>
-          <textarea maxLength="300" id="MESSAGE" name="MESSAGE" class="form-control" placeholder="Something you want to mention" rows="3"></textarea>
+          <textarea id="MESSAGE" name="MESSAGE" class="form-control" placeholder="Something you want to mention" rows="3"></textarea>
           <div class="help-block with-errors"></div>
         </div>
       </div>
@@ -143,6 +136,17 @@
 
 </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( ".log" ).removeClass( "hidden" );
+        @if (Auth::guard('admin')->check()){
+            $( ".log" ).hide();
+            $( ".info" ).removeClass( "hidden" );
+        }
+        @endif
+    });
+</script>
 
 <script>
   $('#checkboxes0')

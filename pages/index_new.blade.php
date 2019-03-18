@@ -12,96 +12,12 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
 
 <link rel="stylesheet" type="text/css" href="{{ url('/css/homepage.css') }}">
-
+</head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<nav class="navbar navbar-default navbar-fixed-top" style="height: 80px;">
-  <div class="container" style="width: 100%;">
-    <div class="navbar-header"">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" ">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="home"><img name="img" src="images/logo.png" height="50px" width="155px""></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar" style="margin-top: 15px;  max-height: 900px;">
-
-      <ul class="nav navbar-nav">
-        
-          <li><a href="home">HOME</a></li>
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">SERVICES<span class="caret"></span></a>        
-            <ul class="dropdown-menu" style="background: #f4511e;">
-                    <li onclick="buyrent()"><a href="BuyRent">TO SALE / TO RENT</a></li>
-                    <li><a href="SellLet">SELL / LET</a></li>
-                </ul>       
-          </li>
-                
-                <li><a href="about">ABOUT US</a></li>
-            <li onclick="contact()"><a href="contact">CONTACT US</a></li>
-            <li><a href="news">NEWS</a></li>
-            <li><a href="notifications"><strong><b>NOTIFICATIONS</b></strong></a></li>
-             <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">INFORMATION<span class="caret"></span></a>        
-            <ul class="dropdown-menu" style="background: #f4511e;">
-                    <li><a href="customers">CUSTOMERS</a></li>
-                    <li><a href="employees">EMPLOYEES</a></li>
-                    <li><a href="collaborators">COLLABORATORS</a></li>
-                </ul>       
-          </li>
-            <li><a href="statistics"><strong><b>STATISTICS</b></strong></a></li>
-
-          <li class="dropdown mega-dropdown" style="">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language<span class="caret"></span></a>        
-            <ul class="dropdown-menu" style="background: #f4511e;">
-                    <li><a href="#">Greek</a></li>
-                <li><a href="#">English</a></li>
-                <li><a href="#">Russia</a></li>
-                </ul>       
-          </li>
-        
-            <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-      <ul id="login-dp" class="dropdown-menu" style="background-color: rgb(86, 86, 113); float: right; width: 100%;">
-        <li>
-           <div class="row">
-              <div class="col-md-12">
-                 <form class="form" role="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
-                    <div class="form-group">
-                       <label class="sr-only" for="exampleInputEmail2">Username</label>
-                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                    </div>
-                    <div class="form-group">
-                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                    </div>
-                    <div class="form-group">
-                       <button type="submit" class="btn btn-primary btn-block" onclick="login()" style="background-color: #1f2a3c;">Sign in</button>
-                    </div>
-                 </form>
-              </div>
-           </div>
-        </li>
-      </ul>
-        </li>
-
-            
-
-        </ul>
-        {{-- <ul class="nav navbar-nav" style="float: right;">
-
-        
-        
-          </ul> --}}
-      </div>
-          
-      </div>
-  </nav>
-
+@include('main')
 
 
 <div class="jumbotron text-center" style="align-items: center;">
@@ -652,6 +568,29 @@
   </div>
 </footer>
 
+<script type="text/javascript">
+    $(document).ready(function(){
+        $( ".log" ).removeClass( "hidden" );
+        @if (Auth::guard('admin')->check()){
+            $( ".log" ).hide();
+            $( ".info" ).removeClass( "hidden" );
+        }
+        @endif
+        // console.log("APOEL");
+        $(".dropdown").hover(  
+        // console.log("APOEL13")          
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+            $(this).toggleClass('open');       
+        }
+    );
+    });
+</script>
+
 <script>
 
   var modal = document.getElementById('myModal');
@@ -687,12 +626,12 @@ span.onclick = function() {
 }
 
 function login() {
-
-	var sign = document.getElementById('signin');
-  	sign.classList.remove("hidden");
-
-  
+  var sign = document.getElementById('signin');
+  sign.classList.remove("hidden");
 }
+
+
+
 
 
 var slideIndex = 1;

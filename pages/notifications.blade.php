@@ -3,35 +3,27 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- CSFR token for ajax call -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSFR token for ajax call -->
     <meta name="_token" content="{{ csrf_token() }}"/>
-	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <link rel="stylesheet" type="text/css" href="{{ url('/css/notification.css') }}">
 
 <body>
-	@extends('main') @section('navbar')
-    </ul>
-    </div>
-
-    </div>
-    </nav>
-    @endsection
+    @include('main') 
 
     <div class="row">
         <br/>
@@ -73,18 +65,18 @@
                                     <td>{{$post->EMAIL}}</td>
                                     <td>{{$post->TELEPHONE}}</td>
 
-                                	<td style="text-align: center;">
+                                    <td style="text-align: center;">
                                     <button class="show-modal btn btn-success" data-id="{{$post->ID}}" data-form_no="{{$post->FORM_NO}}" data-property_id="{{$post->PROPERTY_ID}}" data-first_name="{{$post->FIRST_NAME}}" data-last_name="{{$post->LAST_NAME}}" data-address="{{$post->ADDRESS}}" data-email="{{$post->EMAIL}}" data-telephone="{{$post->TELEPHONE}}" data-sell="{{$post->SELL}}" data-let="{{$post->LET}}" data-message="{{$post->MESSAGE}}">
                                     <span class="glyphicon glyphicon-eye-open"></span> Show</button>
-									</td>
-									<td style="text-align: center;">
+                                    </td>
+                                    <td style="text-align: center;">
                                     <button class="edit-modal btn btn-info" data-id="{{$post->ID}}" data-form_no="{{$post->FORM_NO}}" data-property_id="{{$post->PROPERTY_ID}}" data-first_name="{{$post->FIRST_NAME}}" data-last_name="{{$post->LAST_NAME}}" data-address="{{$post->ADDRESS}}" data-email="{{$post->EMAIL}}" data-telephone="{{$post->TELEPHONE}}" data-sell="{{$post->SELL}}" data-let="{{$post->LET}}" data-message="{{$post->MESSAGE}}">
                                     <span class="glyphicon glyphicon-eye-open"></span> Edit</button>
-									</td>
-									<td style="text-align: center;">
+                                    </td>
+                                    <td style="text-align: center;">
                                     <button class="delete-modal btn btn-danger" data-id="{{$post->ID}}" data-form_no="{{$post->FORM_NO}}" data-property_id="{{$post->PROPERTY_ID}}" data-first_name="{{$post->FIRST_NAME}}" data-last_name="{{$post->LAST_NAME}}" data-address="{{$post->ADDRESS}}" data-email="{{$post->EMAIL}}" data-telephone="{{$post->TELEPHONE}}" data-sell="{{$post->SELL}}" data-let="{{$post->LET}}" data-message="{{$post->MESSAGE}}">
                                     <span class="glyphicon glyphicon-eye-open"></span> Delete</button>
-                                	</td>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -148,16 +140,16 @@
     </div>
   
 
-	<!-- Modal form to show a post -->
+    <!-- Modal form to show a post -->
     <div ID="showModal" class="modal slmodal fade">
             <div class="modal-content">               
                     <div class="modal-header imgcontainer">
-	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                    <h4 class="modal-id" id="ID" style="width: 10%; float: left; margin-top: -5px;"></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-id" id="ID" style="width: 10%; float: left; margin-top: -5px;"></h4>
                         <h4 class="modal-title" style="margin-top: -5px;"></h4>
-	                </div>
+                    </div>
                     <div class="modal-body" style="padding: 16px;">
-                    	<form class="form" role="form">
+                        <form class="form" role="form">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
@@ -202,11 +194,11 @@
                                         <label for="checkboxes">Ineterested for</label>
                                         <div>
                                             <label class="checkbox-inline" for="checkboxes0">
-      											<input name="SELL" id="SELL" value="0" disabled type="checkbox">Sell
-										    </label>
+                                                <input name="SELL" id="SELL" value="0" disabled type="checkbox">Sell
+                                            </label>
                                             <label class="checkbox-inline" for="checkboxes1">
-										      	<input name="LET" id="LET" value="0" disabled type="checkbox">Let
-										    </label>
+                                                <input name="LET" id="LET" value="0" disabled type="checkbox">Let
+                                            </label>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -236,21 +228,21 @@
                             <span class='glyphicon glyphicon-remove'></span> Close
                         </button>
                     </div>                      
-				</div>
+                </div>
         </div>
     </div>
 
-	<!-- Modal form to edit a form -->
+    <!-- Modal form to edit a form -->
     <div ID="editModal" class="modal slmodal fade">
             <div class="modal-content">               
                     <div class="modal-header imgcontainer">
-	                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-id" id="ID2" style="width: 10%; float: left; margin-top: -5px;"></h4>
-	                    <h4 class="modal-title" style="margin-top: -5px;"></h4>
-	                </div>
+                        <h4 class="modal-title" style="margin-top: -5px;"></h4>
+                    </div>
                     <div class="modal-body" style="padding: 16px;">
-                    	<form class="form" role="form">
-                    		{{-- <div class="hidden"><input type="text" name="ID2" id="ID2"></div> --}}
+                        <form class="form" role="form">
+                            {{-- <div class="hidden"><input type="text" name="ID2" id="ID2"></div> --}}
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
@@ -294,11 +286,11 @@
                                         <label for="checkboxes">Ineterested for</label>
                                         <div>
                                             <label class="checkbox-inline" for="checkboxes0">
-      											<input name="SELL2" id="SELL2" disabled type="checkbox">Sell
-										    </label>
+                                                <input name="SELL2" id="SELL2" disabled type="checkbox">Sell
+                                            </label>
                                             <label class="checkbox-inline" for="checkboxes1">
-										      	<input name="LET2" id="LET2" disabled type="checkbox">Let
-										    </label>
+                                                <input name="LET2" id="LET2" disabled type="checkbox">Let
+                                            </label>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
@@ -324,17 +316,17 @@
                             </div>
                     </form>
                     <div class="modal-footer">
-                    	<button type="button" class="btn btn-primary edit" data-dismiss="modal">
+                        <button type="button" class="btn btn-primary edit" data-dismiss="modal">
                             <span class='glyphicon glyphicon-check'></span> Edit
                         </button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">
                             <span class='glyphicon glyphicon-remove'></span> Close
                         </button>
                     </div>                      
-				</div>
+                </div>
         </div>
     </div>
-	<!-- Modal form to delete a form -->
+    <!-- Modal form to delete a form -->
     <div ID="deleteModal" class="modal fade" role="dialog">
         <div class="modal-dialog" style="width: 900px;">
             <div class="modal-content">
@@ -597,6 +589,29 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $( ".log" ).removeClass( "hidden" );
+        @if (Auth::guard('admin')->check()){
+            $( ".log" ).hide();
+            $( ".info" ).removeClass( "hidden" );
+        }
+        @endif
+        // console.log("APOEL");
+        $(".dropdown").hover(  
+        // console.log("APOEL13")          
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
+            $(this).toggleClass('open');       
+        }
+    );
+    });
+</script>
+
 
     <script>
   $('#postTable').DataTable({
@@ -604,7 +619,7 @@
   });   
    $('#BRTable').DataTable({
     responsive: true
-  }); 	
+  });   
     </script>
     <!-- Delay table load until everything else is loaded -->
     <script>
@@ -770,7 +785,7 @@
 
     <!-- AJAX CRUD operations -->
     <script type="text/javascript">
-    	$(document).ready(function() {
+        $(document).ready(function() {
 
     $(".nav-tabs a").click(function() {
       $(this).tab('show');
@@ -840,8 +855,8 @@
 
         // Show a post
         $(document).on('click', '.show-modal', function() {
-		    $('.modal-id').text('ID:\xa0\xa0'+ $(this).data('id'));
-        	var form = $(this).data('form_no');
+            $('.modal-id').text('ID:\xa0\xa0'+ $(this).data('id'));
+            var form = $(this).data('form_no');
             $('.modal-title').text('Showing notification with code:\xa0\xa0'+ form);
             $('#ID').val($(this).data('id'));
             $('#PROPERTY_ID').val($(this).data('property_id'));
@@ -861,12 +876,12 @@
             
             $('#SELL').prop("checked", false);
             $('#LET').prop("checked", false);
-		    if(s == "1"){
-		        $('#SELL').prop("checked", true);
-		    }
-		    if(l == "1"){
-		        $('#LET').prop("checked", true);
-		    }
+            if(s == "1"){
+                $('#SELL').prop("checked", true);
+            }
+            if(l == "1"){
+                $('#LET').prop("checked", true);
+            }
             $('#showModal').modal('show');
         });
 
@@ -911,14 +926,14 @@
             
             $('#SELL2').prop("checked", false);
             $('#LET2').prop("checked", false);
-		    if(s == "1"){
-		        $('#SELL2').prop("checked", true);
-		    }
-		    if(l == "1"){
-		        $('#LET2').prop("checked", true);
-		    }
-			
-			// console.log(ID);
+            if(s == "1"){
+                $('#SELL2').prop("checked", true);
+            }
+            if(l == "1"){
+                $('#LET2').prop("checked", true);
+            }
+            
+            // console.log(ID);
             $('#editModal').modal('show');
             id = $('#ID2').val();
 
@@ -937,7 +952,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '{{url('edit')}}',
+                    url: '{{url('admin/edit')}}',
                     dataType: 'json',
                     // cache: 'false',
                     data: {
@@ -1074,7 +1089,7 @@
 
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode != 32 && (charCode < 65 || charCode > 122))
-      	return false;
+        return false;
     return true;
   }
 
