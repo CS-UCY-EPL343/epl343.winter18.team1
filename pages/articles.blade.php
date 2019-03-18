@@ -16,6 +16,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  
 </head>
+
 <style>
   body {
      font: 400 15px Lato, sans-serif;
@@ -328,7 +329,7 @@
 
 </style>
 <body>
-    @extends('main') @section('navbar')
+	@extends('main') @section('navbar')
     </ul>
     </div>
 
@@ -340,17 +341,16 @@
 
         <div class="col-md-12 container-fluid" style="margin-top: -30px;">
             <ul class="nav nav-tabs" style="margin-top: 70px;">
-                <li class="active"><a href="#sltablediv" style="color: #555;">Articles Data</a></li>
+                <li class="active"><a href="#sltablediv" style="color: #555;">Articles</a></li>
             </ul>
             <div class="tab-content">
                 <div id="sltablediv" class="tab-pane fade in active">
-                    <h1 align="center" {{-- style="margin-top: 70px;" --}}>Edit Articles</h1>
+                    <h1 align="center" {{-- style="margin-top: 70px;" --}}>Articles Data</h1>
                     <table class="table table-bordered" id="sltable">
                         <thead>
                             <tr>
-                                <th>Article ID</th>
-                                <th>Document</th>
-                                <th>Position</th>
+                                <th>Title</th>
+                                <th>Article</th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="color: red;"></i></th>
                             </tr>
@@ -358,10 +358,8 @@
                         <tbody>
                             @foreach($ARTICLE as $row)
                             <tr>
-                                <td>{{$row->ARTICLE_ID}}</td>
                                 <td>{{$row->TITLE}}</td>
                                 <td>{{$row->DOCUMENT}}</td>
-                                <td>{{$row->POSITION}}</td>
                                 <td style="text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer;" onclick="document.getElementById('id01{{$row->ARTICLE_ID}}').style.display='block'"></i></td>
                                 <td style="text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="cursor: pointer; color: red;" onclick="document.getElementById('id02{{$row->ARTICLE_ID}}').style.display='block'"></i></td>
                             </tr>
@@ -374,7 +372,7 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_name">Title</label>
-                                                        <textarea id="form_message" name="TITLE" class="form-control" placeholder="Write your Title.." rows="5">{{$row->TITLE}}</textarea>
+                                                        <textarea id="form_message" name="TITLE" class="form-control" placeholder="Write your Title..">{{$row->TITLE}}</textarea>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -399,7 +397,7 @@
                                                 <input name="ARTICLE_ID" id="ARTICLE_ID" class="hidden ID" value="{{$row->ARTICLE_ID}}">
                                             </div>
                                             <div class="col-md-4" style="float: left;">
-                                                <input name="POSITION" id="POSITION" class="hidden ID" value="{{$row->POSITION}}">
+                                                <input name="TITLE" id="TITLE" class="hidden ID" value="{{$row->TITLE}}">
                                             </div>
                                         </div>
                                     </form>
@@ -410,7 +408,7 @@
                                     <form method="post" action="{{url('ArticlesDestroy')}}" role="form" id="sldata">
                                         {{csrf_field()}}
                                             <div class="container-fluid" style="text-align: center; padding: 0;">
-                                                <p style="font-size: 25px;">Do you want to delete the notification from <b>{{$row->ARTICLE_ID}}</b>?</p>
+                                                <p style="font-size: 25px;">Do you want to delete the notification from article: <b>{{$row->ARTICLE_ID}}</b>?</p>
                                             </div>
 
                                             <div class="container-fluid" style="background-color:#f1f1f1; padding: 16px;">
@@ -447,19 +445,10 @@
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label for="form_name">Position</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="POSITION" type="text" name="POSITION" class="form-control" placeholder="Please enter the article's position *" required="required" data-error="Position is required.">
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="form_message">Document</label>
-                                                        <textarea id="form_message" name="DOCUMENT" class="form-control" placeholder="Write your ARTICLE.." rows="3"></textarea>
+                                                        <textarea id="form_message" name="DOCUMENT" class="form-control" placeholder="Write the article.." rows="5"></textarea>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -483,12 +472,10 @@
                         </tbody>
                     </table>
                     </div>
-                    
-                    </div>
                 </div>
             </div>
         </div>
-
+    </div>
 </body>
 
 <script type="text/javascript">
