@@ -37,6 +37,16 @@ Route::get('SellLetDestroy', 'PagesController@getSellLetDestroy');
 
 Route::get('notifications', 'SellLetController@index');
 
+Route::get('customers', 'PagesController@getCustomers');
+
+Route::get('CustomersUpdate', 'PagesController@getCustomersUpdate');
+
+Route::get('CustomersDestroy', 'PagesController@getCustomersDestroy');
+
+Route::get('CustomersAdd', 'PagesController@getCustomersAdd');
+
+Route::get('customers', 'CustomersController@index');
+
 Route::get('news', 'PagesController@getNews');
 
 Route::get('news', 'ArticlesController@deiksemouto');
@@ -50,16 +60,6 @@ Route::get('ArticlesDestroy', 'PagesController@getArticlesDestroy');
 Route::get('ArticlesAdd', 'PagesController@getArticlesAdd');
 
 Route::get('articles', 'ArticlesController@index');
-
-Route::get('customers', 'PagesController@getCustomers');
-
-Route::get('CustomersUpdate', 'PagesController@getCustomersUpdate');
-
-Route::get('CustomersDestroy', 'PagesController@getCustomersDestroy');
-
-Route::get('CustomersAdd', 'PagesController@getCustomersAdd');
-
-Route::get('customers', 'CustomersController@index');
 
 
 
@@ -75,14 +75,6 @@ Route::post('BuyRentStore', 'BuyRentController@store');
 
 Route::post('BuyRentDestroy', 'BuyRentController@destroy');
 
-Route::post('articles', 'ArticlesController@store');
-
-Route::post('ArticlesUpdate', 'ArticlesController@update');
-
-Route::post('ArticlesDestroy', 'ArticlesController@destroy');
-
-Route::post('ArticlesAdd', 'ArticlesController@store');
-
 Route::post('customers', 'CustomersController@store');
 
 Route::post('CustomersUpdate', 'CustomersController@update');
@@ -91,6 +83,13 @@ Route::post('CustomersDestroy', 'CustomersController@destroy');
 
 Route::post('CustomersAdd', 'CustomersController@store');
 
+Route::post('articles', 'ArticlesController@store');
+
+Route::post('ArticlesUpdate', 'ArticlesController@update');
+
+Route::post('ArticlesDestroy', 'ArticlesController@destroy');
+
+Route::post('ArticlesAdd', 'ArticlesController@store');
 
 // Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
