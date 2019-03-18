@@ -37,6 +37,21 @@ Route::get('SellLetDestroy', 'PagesController@getSellLetDestroy');
 
 Route::get('notifications', 'SellLetController@index');
 
+Route::get('news', 'PagesController@getNews');
+
+Route::get('news', 'ArticlesController@deiksemouto');
+
+Route::get('articles', 'PagesController@getArticles');
+
+Route::get('ArticlesUpdate', 'PagesController@getArticlesUpdate');
+
+Route::get('ArticlesDestroy', 'PagesController@getArticlesDestroy');
+
+Route::get('ArticlesAdd', 'PagesController@getArticlesAdd');
+
+Route::get('articles', 'ArticlesController@index');
+
+
 
 Route::post('SellLet', 'SellLetController@store');
 
@@ -49,6 +64,14 @@ Route::post('BuyRentUpdate', 'BuyRentController@update');
 Route::post('BuyRentStore', 'BuyRentController@store');
 
 Route::post('BuyRentDestroy', 'BuyRentController@destroy');
+
+Route::post('articles', 'ArticlesController@store');
+
+Route::post('ArticlesUpdate', 'ArticlesController@update');
+
+Route::post('ArticlesDestroy', 'ArticlesController@destroy');
+
+Route::post('ArticlesAdd', 'ArticlesController@store');
 
 
 // Auth::routes();
