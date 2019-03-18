@@ -51,6 +51,16 @@ Route::get('ArticlesAdd', 'PagesController@getArticlesAdd');
 
 Route::get('articles', 'ArticlesController@index');
 
+Route::get('customers', 'PagesController@getCustomers');
+
+Route::get('CustomersUpdate', 'PagesController@getCustomersUpdate');
+
+Route::get('CustomersDestroy', 'PagesController@getCustomersDestroy');
+
+Route::get('CustomersAdd', 'PagesController@getCustomersAdd');
+
+Route::get('customers', 'CustomersController@index');
+
 
 
 Route::post('SellLet', 'SellLetController@store');
@@ -72,6 +82,14 @@ Route::post('ArticlesUpdate', 'ArticlesController@update');
 Route::post('ArticlesDestroy', 'ArticlesController@destroy');
 
 Route::post('ArticlesAdd', 'ArticlesController@store');
+
+Route::post('customers', 'CustomersController@store');
+
+Route::post('CustomersUpdate', 'CustomersController@update');
+
+Route::post('CustomersDestroy', 'CustomersController@destroy');
+
+Route::post('CustomersAdd', 'CustomersController@store');
 
 
 // Auth::routes();
