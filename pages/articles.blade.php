@@ -349,6 +349,7 @@
                     <table class="table table-bordered" id="sltable">
                         <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>Title</th>
                                 <th>Article</th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
@@ -358,6 +359,7 @@
                         <tbody>
                             @foreach($ARTICLE as $row)
                             <tr>
+                                <td>{{$row->DATE}}</td>
                                 <td>{{$row->TITLE}}</td>
                                 <td>{{$row->DOCUMENT}}</td>
                                 <td style="text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer;" onclick="document.getElementById('id01{{$row->ARTICLE_ID}}').style.display='block'"></i></td>
@@ -369,7 +371,7 @@
                                         {{csrf_field()}}
                                         <div class="container" style="padding: 16px;">
                                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-2">
                                                     <div class="form-group">
                                                         <label for="form_name">Title</label>
                                                         <textarea id="form_message" name="TITLE" class="form-control" placeholder="Write your Title..">{{$row->TITLE}}</textarea>
@@ -380,6 +382,14 @@
                                                     <div class="form-group">
                                                         <label for="form_name">Document</label>
                                                         <textarea id="form_message" name="DOCUMENT" class="form-control" placeholder="Write your article.." rows="5">{{$row->DOCUMENT}}</textarea>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="form_message">Image</label>    
+                                                        <!--First upload the image on the server and then get the image url from the db and display it on the website-->                     
+                                                        <input id="IMAGE" type="file" name="IMAGE" class="form-control" placeholder="Browse image*" required="required" data-error="Image is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -397,7 +407,7 @@
                                                 <input name="ARTICLE_ID" id="ARTICLE_ID" class="hidden ID" value="{{$row->ARTICLE_ID}}">
                                             </div>
                                             <div class="col-md-4" style="float: left;">
-                                                <input name="TITLE" id="TITLE" class="hidden ID" value="{{$row->TITLE}}">
+                                                <input name="DATE" id="DATE" class="hidden ID" value="{{$row->DATE}}">
                                             </div>
                                         </div>
                                     </form>
@@ -453,6 +463,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="form_name">Date</label>
+                                                        <input id="DATE" type="date" name="DATE" class="form-control" placeholder="Please enter the article's date *" required="required" data-error="Date is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="container col-md-12" style="background-color:#f1f1f1; padding: 16px;">
                                             <div class="col-md-4" style="float: left;">
@@ -464,6 +483,9 @@
                                             </div>
                                             <div class="col-md-4" style="float: left;">
                                                 <input name="ARTICLE_ID" id="ARTICLE_ID" class="hidden ID" value="{{$row->ARTICLE_ID}}">
+                                            </div>
+                                            <div class="col-md-4" style="float: left;">
+                                                <input name="IMAGE" id="IMAGE" class="hidden ID" value="{{$row->IMAGE}}">
                                             </div>
                                         </div>
                                     </form>
