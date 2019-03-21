@@ -31,7 +31,7 @@ class ArticlesController extends Controller
     public function deiksemouto()
     {
         //$ARTICLE = \DB::table('ARTICLE')->where('ARTICLE_ID', '1')->first();
-        $ARTICLE = \DB::table('ARTICLE')->get();
+        $ARTICLE = \DB::table('ARTICLE')->orderBy('DATE','DESC')->get();
         return view('pages.news', ['ARTICLE'=>$ARTICLE]);
     }
 
@@ -55,8 +55,10 @@ class ArticlesController extends Controller
 
         $DOCUMENT = $req->input('DOCUMENT');
         $TITLE = $req->input('TITLE');
+        $IMAGE = $req->input('IMAGE');
+        $DATE = $req->input('DATE');
         
-        $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE);
+        $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
 
         \DB::table('ARTICLE')->insert($data);
 
@@ -118,8 +120,10 @@ class ArticlesController extends Controller
         $record = $req->input('ARTICLE_ID');
         $DOCUMENT = $req->input('DOCUMENT');
         $TITLE = $req->input('TITLE');
+        $IMAGE = $req->input('IMAGE');
+        $DATE = $req->input('DATE');
 
-        $data = array('DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE);
+        $data = array('DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
 
         \DB::table('ARTICLE')->where('ARTICLE_ID',$record)->update($data);
         return redirect()->back();
