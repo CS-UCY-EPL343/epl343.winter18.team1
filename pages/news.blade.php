@@ -203,15 +203,14 @@ stylize any heading tags withing white-panel below
 
     @foreach($ARTICLE as $row)
 
-    <?$i = 1;?>
     <!--"{{$row->IMAGE}}"-->
     <!--document.getElementById('imageBox').src = "img/apple_" + total + ".png";-->
     <!--<article class="white-panel"><img src="images/r+'$i'+.jpg" alt="">-->
-      <article class="white-panel"><img src="images/r+i+.jpg" alt="">
+      <article class="white-panel"><img src="data:image/png;base64,{{ chunk_split(base64_encode($row->IMAGE)) }}" alt="">
         <h4>{{$row->TITLE}}</h4>
+        <p>{{$row->DATE}}</p>
         <p>{{$row->DOCUMENT}}</p>
       </article>
-      $i++;
     @endforeach
 
     </section>
@@ -220,6 +219,10 @@ stylize any heading tags withing white-panel below
 </body>
 
 <script>
+
+function myFunction(){
+
+}
 
 $(document).ready(function() {
 $('#pinBoot').pinterest_grid({
