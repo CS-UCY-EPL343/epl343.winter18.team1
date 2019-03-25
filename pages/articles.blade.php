@@ -374,14 +374,14 @@
                                                 <div class="col-sm-2">
                                                     <div class="form-group">
                                                         <label for="form_name">Title</label>
-                                                        <textarea id="form_message" name="TITLE" class="form-control" placeholder="Write your Title..">{{$row->TITLE}}</textarea>
+                                                        <textarea id="form_message" name="TITLE" class="form-control" placeholder="Write Title..">{{$row->TITLE}}</textarea>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_name">Document</label>
-                                                        <textarea id="form_message" name="DOCUMENT" class="form-control" placeholder="Write your article.." rows="5">{{$row->DOCUMENT}}</textarea>
+                                                        <textarea id="form_message" name="DOCUMENT" class="form-control" placeholder="Write Αrticle.." rows="5">{{$row->DOCUMENT}}</textarea>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -455,6 +455,15 @@
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="form_name">Date</label>
+                                                        <input id="DATE" type="date" name="DATE" class="form-control" placeholder="Please enter the article's date *" required="required" data-error="Date is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="form_message">Document</label>
@@ -466,8 +475,9 @@
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
-                                                        <label for="form_name">Date</label>
-                                                        <input id="DATE" type="date" name="DATE" class="form-control" placeholder="Please enter the article's date *" required="required" data-error="Date is required.">
+                                                        <label for="form_message">Image</label>    
+                                                        <!--First upload the image on the server and then get the image url from the db and display it on the website-->                     
+                                                        <input id="IMAGE" type="file" name="IMAGE" class="form-control" placeholder="Browse image*" required="required" data-error="Image is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
