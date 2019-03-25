@@ -55,7 +55,8 @@ class ArticlesController extends Controller
 
         $DOCUMENT = $req->input('DOCUMENT');
         $TITLE = $req->input('TITLE');
-        $IMAGE = $req->input('IMAGE');
+        //$IMAGE = $req->input('IMAGE');
+        $IMAGE = "images/" . $req->input('IMAGE');
         $DATE = $req->input('DATE');
         
         $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
@@ -120,7 +121,8 @@ class ArticlesController extends Controller
         $record = $req->input('ARTICLE_ID');
         $DOCUMENT = $req->input('DOCUMENT');
         $TITLE = $req->input('TITLE');
-        $IMAGE = $req->input('IMAGE');
+        //$IMAGE = $req->input('IMAGE');
+        $IMAGE = "images/" . $req->input('IMAGE');
         $DATE = $req->input('DATE');
 
         $data = array('DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
