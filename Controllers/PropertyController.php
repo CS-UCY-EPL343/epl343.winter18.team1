@@ -13,10 +13,13 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $PROPERTY_PLOT = \DB::table('PROPERTY_PLOT')->get();
+    public function index(){
+
+        $PROPERTY_PLOT = \DB::table('PROPERTY_PLOT', 'asc')->get();
+
+       
         return view('pages.property', ['PROPERTY_PLOT' => $PROPERTY_PLOT]);
+
     }
 
     function upload(Request $request) {
@@ -47,14 +50,24 @@ class PropertyController extends Controller
     public function store(Request $req) {
 
         
+        $CUSTOMER_ID = $req->input('CUSTOMER_ID');
+
+        $flag = \DB::table('CUSTOMER')->where( 'ID', $CUSTOMER_ID)->count();
+        if($flag==0){
+            // return alert "apoel";
+            return redirect()->back() ->with('message', 'Please enter an existing customer ID. ');
+
+
+            //return alert('Ooops, something happened: ' + textStatus + ' ' +errorThrown);
+        
+
+        }else {
+
+
         $list = \DB::table('PROPERTY_PLOT')->pluck('PROPERTY_ID')->toArray();
         //$fn1 = $list[count($list)-1] + 1;
        // $fn2 = "cl";
-
-        //$PROPERTY_ID = $fn1;
-
         
-
         $PROPERTY_ID = $req-> input('PROPERTY_ID');
         $AVAILABLE_FOR = $req->input('AVAILABLE_FOR');
         $TYPE = $req->input('TYPE');
@@ -67,7 +80,6 @@ class PropertyController extends Controller
         $ROOMS = $req->input('ROOMS');
         $FURNISHED = $req->input('FURNISHED');
         $POOL = $req->input('POOL');
-        $CUSTOMER_ID = $req->input('CUSTOMER_ID');
         $PICTURE=$req->input('PICTURE');
         $DATE_SUBMITTED = $req->input('DATE_SUBMITTED');
        
@@ -94,6 +106,8 @@ class PropertyController extends Controller
         \DB::table('PROPERTY_PLOT')->insert($data);
 
         return redirect()->back()->with('alert', 'Request submited!');
+
+        }
     }
 
     /**
