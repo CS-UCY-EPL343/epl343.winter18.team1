@@ -57,6 +57,9 @@ class ArticlesController extends Controller
         $TITLE = $req->input('TITLE');
         //$IMAGE = $req->input('IMAGE');
         $IMAGE = "images/" . $req->input('IMAGE');
+        //$file = $req->file('IMAGE');
+        //$IMAGE = $file->getClientOriginalName();
+        //$file->move('images/', $IMAGE);
         $DATE = $req->input('DATE');
         
         $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
@@ -123,6 +126,9 @@ class ArticlesController extends Controller
         $TITLE = $req->input('TITLE');
         //$IMAGE = $req->input('IMAGE');
         $IMAGE = "images/" . $req->input('IMAGE');
+        //$file = $req->file('IMAGE');
+        //$IMAGE = $file->getClientOriginalName();
+        //$file->move('images/', $IMAGE);
         $DATE = $req->input('DATE');
 
         $data = array('DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
