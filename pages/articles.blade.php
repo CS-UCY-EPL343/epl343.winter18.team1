@@ -53,6 +53,7 @@
                                 <td>{{$row->DATE}}</td>
                                 <td>{{$row->TITLE}}</td>
                                 <td>{{$row->DOCUMENT}}</td>
+
                                 <td style="text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer;" onclick="document.getElementById('id01{{$row->ARTICLE_ID}}').style.display='block'"></i></td>
                                 <td style="text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="cursor: pointer; color: red;" onclick="document.getElementById('id02{{$row->ARTICLE_ID}}').style.display='block'"></i></td>
                             </tr>
@@ -185,9 +186,9 @@
                                             <div class="col-md-4" style="float: left;">
                                                 <input name="ARTICLE_ID" id="ARTICLE_ID" class="hidden ID" value="{{$row->ARTICLE_ID}}">
                                             </div>
-                                            <div class="col-md-4" style="float: left;">
-                                                <input name="IMAGE" id="IMAGE" class="hidden ID" value="{{$row->IMAGE}}">
-                                            </div>
+                                            <!--<div class="col-md-4" style="float: left;">
+                                                 <input name="IMAGE" id="IMAGE" class="hidden ID" value="{{$row->IMAGE}}"> 
+                                            </div>-->
                                         </div>
                                     </form>
                                 </div>
