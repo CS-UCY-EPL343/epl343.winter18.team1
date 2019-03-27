@@ -35,6 +35,26 @@
      color: #f4511e;
      font-size: 50px;
 }
+.carousel-control .glyphicon-chevron-left {
+    position: center;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -15px;
+    color: white;
+    font-size: 25px;
+}
+
+.carousel-control .glyphicon-chevron-right {
+    position: center;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    margin-top: -15px;
+    color: white;
+    font-size: 25px;
+}
+
  .logo {
      color: #f4511e;
      font-size: 200px;
@@ -331,6 +351,11 @@
 </style>
 <body>
     @extends('main') @section('navbar')
+    </ul>
+    </div>
+
+    </div>
+    </nav>
     @endsection
     <div class="row">
         <br/>
@@ -341,52 +366,47 @@
             </ul>
             <div class="tab-content">
                 <div id="sltablediv" class="tab-pane fade in active">
-                    <h1 align="center">Properties Forms Data</h1>
+                    <h1 align="center" {{-- style="margin-top: 70px;" --}}>Properties Forms Data</h1>
                     <table class="table table-bordered" id="sltable">
                         <thead>
                             <tr>
                                 <th>PROPERTY ID</th>
                                 <th>AVAILABLE FOR</th>
                                 <th>TYPE</th>
-                                <th>SUBTYPE</th>
                                 <th>TOWN</th>
                                 <th>AREA</th>
                                 <th>PRICE</th>
                                 <th>SQUARE METERS</th>
-                                <th>FLOORS</th>
-                                <th>ROOMS</th>
-                                <th>FURNISHED</th>
-                                <th>POOL</th>
                                 <th>DATE_SUBMITTED</th>
-                                <th>PICTURE</th>
                                 <th>CUSTOMER_ID</th>
+                                <th>PICTURES</th>
 
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="color: red;"></i></th>
                             </tr>
-                            {{ csrf_field() }}
                         </thead>
 
                         <tbody>
-                            @foreach($PROPERTY_PLOT as $indexKey => $row)
+                            @foreach($PROPERTY_PLOT as $row)
                             <tr>
                                 <td>{{$row->PROPERTY_ID}}</td>
                                 <td>{{$row->AVAILABLE_FOR}}</td>
                                 <td>{{$row->TYPE}}</td>
-                                <td>{{$row->SUBTYPE}}</td>
                                 <td>{{$row->TOWN}}</td>
                                 <td>{{$row->AREA}}</td>
                                 <td>{{$row->PRICE}}</td>
                                 <td>{{$row->SQUARE_METERS}}</td>
-                                <td>{{$row->FLOORS}}</td>
-                                <td>{{$row->ROOMS}}</td>
-                                <td>{{$row->FURNISHED}}</td>
-                                <td>{{$row->POOL}}</td>
                                 <td>{{$row->DATE_SUBMITTED}}</td>
-                                <td>{{$row->PICTURE}}</td>
-                                <td>{{$row->CUSTOMER_ID}}</td>
-
-
+                                 <td>{{$row->CUSTOMER_ID}}</td>
+                              
+                                  <td style="text-align: center;">
+                                    <i class="fas fa-image" 
+                                       aria-hidden="true" 
+                                       style="cursor: pointer;" 
+                                       onclick="document.getElementById('id04{{$row->PROPERTY_ID}}').style.display='block'">
+                                    </i>
+                                </td>
+ 
                                 <td style="text-align: center;">
                                     <i class="fa fa-pencil-square-o" 
                                        aria-hidden="true" 
@@ -405,7 +425,112 @@
                                 </td>
                             </tr>
 
-                    
+
+                            <div id="id04{{$row->PROPERTY_ID}}" class="modal slmodal">
+                                <div class="modal-content animate" name="slmodal">
+
+                                    <form method="post" 
+                                          action="{{url('PropertyImage')}}" 
+                                          role="form" 
+                                          id="sldata"
+                                        >
+
+                                    <div id="about" class="container-fluid" style="width: 1700px; margin-right: auto; margin-left: 320px;">
+                                      <div class="row">
+                                        <div class="col-sm-6 carousel slide" id="myCarousel" data-ride="carousel" style="bottom: 10px;">
+                                                <!-- Indicators -->
+                                                <ol class="carousel-indicators">
+                                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="3"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="4"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="5"></li>
+                                                </ol>
+
+                                                <!-- Wrapper for slides -->
+                                                <div class="carousel-inner" >
+
+                                                  <div class="item active" >
+
+
+                                                    <img src="images/r17.jpg" alt="Los Angeles" style=" width: 100%">
+                                                    <div class="carousel-caption">
+                                                      <h3>Limassol</h3>
+                                                      <p>In Limassol is always so much fun!</p>
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r13.jpg" alt="Chicago" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                    
+                                                      <p>Thank you, Limassol!</p>
+                                                    </div>
+                                                  </div>
+                                                
+                                                  <div class="item">
+                                                    <img src="images/r14.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                     
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r15.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                      
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r16.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                      
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r3.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                      
+                                                    </div>
+                                                  </div>
+                                              
+                                                </div>
+
+                                                <!-- Left and right controls -->
+                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                                                  <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                                                  <span class="sr-only">Next</span>
+                                                </a>   
+                                         </div>
+                                      </div>
+                                    </div>
+                                    <div class="container-fluid" style="background-color:#f1f1f1; padding: 0px;">
+                                                <div class="" 
+                                                     style="float: center;">
+                                                    <button type="button" 
+                                                            onclick="document.getElementById('id04{{$row->PROPERTY_ID}}').style.display='none'" 
+                                                            class="cancelbtn"
+                                                            align="center" 
+                                                            style="font-size: 20px; background: transparent; border-color: #f4511e;">Back</button>
+                                                </div>
+
+                                               
+                                    </div>  
+                                     </form>
+                                     
+                                 </div>    
+                            </div>   
+
+
+
+
                             <div id="id01{{$row->PROPERTY_ID}}" class="modal slmodal">
                                 <div class="modal-content animate" name="slmodal">
 
@@ -413,10 +538,10 @@
                                           action="{{url('PropertyUpdate')}}" 
                                           role="form" 
                                           id="sldata"
-                                          enctype="multipath/form-data">
+                                        >
 
                                         {{csrf_field()}}
-                                        <div class="container" style="padding: 16px;">
+                                        <div class="container-fluid" style="padding: 16px;">
 
                                             <div class="row">
                                                 <div class="col-sm-3">
@@ -447,8 +572,8 @@
                                                             <option {{ $row->AVAILABLE_FOR == 'For Rent' ? 'selected':'' }}>For Rent</option>
                                                         </select>
                                                         <div class="help-block with-errors"></div> 
-                                                    </div> 
-                                               </div>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-sm-3">
@@ -486,7 +611,7 @@
                                                 </div>      
                                             </div>
 
-                                             <div class="row">
+                                            <div class="row">
 
 
                                                 <div class="col-sm-3">
@@ -510,7 +635,7 @@
                                                         <input onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
                                                                id="AREA" 
-                                                               type="text" 
+                                                               type="number" 
                                                                name="AREA" 
                                                                class="form-control" 
                                                                placeholder="Please enter area."
@@ -524,15 +649,17 @@
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Price: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
                                                                id="PRICE" 
                                                                type="number" 
                                                                name="PRICE" 
                                                                class="form-control" 
-                                                               placeholder="Please enter the price *" 
-                                                               required="required" 
-                                                               data-error="Price is required." 
+                                                                required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter price')" 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)"  
                                                                value="{{$row->PRICE}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -543,52 +670,64 @@
                                      			<div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Square Meters: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
                                                                id="SQUARE_METERS" 
                                                                type="number" 
                                                                name="SQUARE_METERS" 
                                                                class="form-control" 
                                                                placeholder="Please enter square meters of property." 
-                                                              
+                                                               required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter the square meters ')" 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)"  
                                                                value="{{$row->SQUARE_METERS}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                             <div class="row">
-                                                	<div class="col-sm-5">
+                                            <div class="row">
+                                                <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Floors: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
+                                                               onkeyup="alphaOnly(this)"
                                                                id="FLOORS" 
                                                                type="number" 
                                                                name="FLOORS" 
                                                                class="form-control" 
                                                                placeholder="Please enter floors." 
-                                                              
+                                                               required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter the square meters ')" 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)"  
                                                                value="{{$row->FLOORS}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
-                                                	<div class="col-sm-5">
+                                                <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Rooms: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" " 
+                                                               onkeyup="alphaOnly(this)"
                                                                id="ROOMS" 
                                                                type="number" 
                                                                name="ROOMS" 
                                                                class="form-control" 
                                                                placeholder="Please enter rooms." 
-                                                              
+                                                               required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter the square meters ')" 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)"  
                                                                value="{{$row->ROOMS}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
-                                                </div>
+                                            </div>
                                                 <div class="row">
 
 
@@ -617,7 +756,7 @@
 
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
-                                                        <label for="form_name">Customer ID</label>
+                                                        <label for="form_name">Customer ID: </label>
                                                         <input onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
                                                                id="CUSTOMER_ID" 
@@ -636,18 +775,89 @@
 
                                   				<div class="col-sm-5">
                                                     <div class="form-group">
-                                                        <label for="form_message">Picture</label>                         
+                                                        <label for="form_message">Pictures: </label>                         
                                                         	
-                                                        	<input id="PICTURE" 
-                                                               type="file" 
-                                                               name="PICTURE"  
-                                                               placeholder="Browse image"    
-                                                               value="{{$row->PICTURE}}"> 
+                                                        	 <div id="about" class="container-fluid" style="width: 1000px; margin-right: auto; margin-left: 20px;">
+                                    <div class="row">
+                                        <div class="col-sm-6 carousel slide" id="myCarousel" data-ride="carousel" style="bottom: 10px;">
+                                                <!-- Indicators -->
+                                                <ol class="carousel-indicators">
+                                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="3"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="4"></li>
+                                                  <li data-target="#myCarousel" data-slide-to="5"></li>
+                                                </ol>
+
+                                                <!-- Wrapper for slides -->
+                                                <div class="carousel-inner" >
+
+                                                  <div class="item active" >
+
+
+                                                    <img src="images/r17.jpg" alt="Los Angeles" style=" width: 100%">
+                                                    <div class="carousel-caption">
+                                 
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r13.jpg" alt="Chicago" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                    
+                                              
+                                                    </div>
+                                                  </div>
+                                                
+                                                  <div class="item">
+                                                    <img src="images/r14.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                     
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r15.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                      
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r16.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                      
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="item">
+                                                    <img src="images/r3.jpg" alt="New York" style="width:100%;">
+                                                    <div class="carousel-caption">
+                                                      
+                                                    </div>
+                                                  </div>
+                                              
+                                                </div>
+
+                                                <!-- Left and right controls -->
+                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                                  <span class="glyphicon glyphicon-chevron-left"></span>
+                                                  <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                                  <span class="glyphicon glyphicon-chevron-right"></span>
+                                                  <span class="sr-only">Next</span>
+                                                </a>   
+                                         </div>
+                                      </div>
+                                    </div>
 
                                                             <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
-
+                                </div>
+                                <div class="row">
 
  												<div class="col-sm-5">
                                                     <div class="form-group">
@@ -662,7 +872,7 @@
                                                     </div>
                                                 </div>
                 				            </div>
-
+                                        </div>    
                                         <div class="container col-md-12" 
                                              style="background-color:#f1f1f1; 
                                              padding: 16px;">
@@ -698,6 +908,7 @@
                             </div>
 
 
+
                             <div id="id02{{$row->PROPERTY_ID}}" 
                                  class="modal">
                                 <div class="modal-content animate modal-sm">
@@ -709,11 +920,11 @@
 
                                         {{csrf_field()}}
                                              <div class="container-fluid" style="text-align: center; padding: 0;">
-                                                <p style="font-size: 25px;">Do you want to delete delete this record <b>{{$row->PROPERTY_ID}} </b>?</p>
+                                                <p style="font-size: 20px;">Do you want to delete delete this record <b>{{$row->PROPERTY_ID}} </b>?</p>
                                             </div>
 
                                             <div class="container-fluid" 
-                                                 style="background-color:#f1f1f1; padding: 16px;">
+                                                 style="background-color:#f1f1f1; padding: 0px;">
                                                 <div class="" 
                                                      style="float: left;">
                                                     <button type="button" 
@@ -727,7 +938,7 @@
                                                            class="btn btn-black" 
                                                            align="center" 
                                                            value="Confirm" 
-                                                           style="font-size: 16px; background: transparent; border-color: #f4511e;">
+                                                           style="font-size: 20px; background: transparent; border-color: #f4511e;">
                                                 </div>
                                                 <div class="" style="float: left;">
                                                     <input name="PROPERTY_ID" 
@@ -740,6 +951,8 @@
                                 </div>
                             </div>
                                @endforeach  
+
+                              
 
   						<thead>
                             <tr>
@@ -774,7 +987,7 @@
                                                                type="text" 
                                                                name="PROPERTY_ID" 
                                                                class="form-control" 
-                                                               placeholder="Please fill this field" 
+                                                               placeholder="Please fill this field*" 
                                                                required="required" 
                                                                data-error="PROPERTY_ID field is required.">
                                                         <div class="help-block with-errors"></div>
@@ -793,6 +1006,7 @@
                                                         <div class="help-block with-errors"></div> 
                                                 </div> 
                                             </div>                                            
+
 
                                            <div class="row">
                                                 <div class="col-sm-3">
@@ -857,8 +1071,8 @@
                                                                type="text" 
                                                                name="AREA" 
                                                                class="form-control" 
-                                                               placeholder="Please enter area."
-                                                               value="{{$row->AREA}}">
+                                                               placeholder="Please enter area *"
+                                                            >
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -869,15 +1083,19 @@
                                             <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Price: </label>
-                                                        <input id="PRICE" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
+                                                               onkeyup ="alphaOnly(this)"
+                                                               id="PRICE" 
                                                         	   type="number" 
                                                         	   name="PRICE" 
                                                         	   class="form-control" 
-                                                        	   placeholder="Please fill this field" 
-                                                        	   required oninvalid="setCustomValidity()" 
+                                                        	   placeholder="Please enter price *" 
+                                                        	  required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter price ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
                                                                onkeypress="return isNumberKey(event)" 
-                                                               onkeyup="lettersOnly(this)">
+                                                               onkeyup="lettersOnly(this)"  >
+
                                                     	<div class="help-block with-errors"></div>
 
                                             		<div>  
@@ -887,16 +1105,19 @@
                                             <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Square Meters: </label>
-                                                        <input id="SQUARE_METERS" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
+                                                               onkeyup ="alphaOnly(this)"
+                                                               id="SQUARE_METERS" 
                                                                type="number" 
                                                                name="SQUARE_METERS" 
                                                                class="form-control" 
-                                                               placeholder="Please fill this field"  
-                                                               required oninvalid="setCustomValidity()" 
+                                                               placeholder="Please enter square meters *"  
+                                                               required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter the square meters ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
                                                                onkeypress="return isNumberKey(event)" 
-                                                               onkeyup="lettersOnly(this)">
-                                                    	<div class="help-block with-errors"></div>
+                                                               onkeyup="lettersOnly(this)"  >
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -904,30 +1125,36 @@
                                                  <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Floors: </label>
-                                                        <input id="FLOORS" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
+                                                               onkeyup ="alphaOnly(this)"
+                                                               id="FLOORS" 
                                                                type="number" 
                                                                name="FLOORS" 
                                                                class="form-control" 
-                                                               placeholder="Please fill this field" 
-                                                               required oninvalid="setCustomValidity()" 
+                                                               placeholder="Please enter the number of floors" 
+                                                               required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter the number of floors ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
-                                                            onkeypress="return isNumberKey(event)" 
-                                                            onkeyup="lettersOnly(this)">
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)">
                                                     </div>
                                                 </div>
 
                                             	<div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Rooms: </label>
-                                                        <input id="ROOMS" 
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
+                                                               onkeyup ="alphaOnly(this)"
+                                                               id="ROOMS" 
                                                                type="number" 
                                                                name="ROOMS" 
                                                                class="form-control" 
-                                                               placeholder="Please fill this field" 
-                                                               required oninvalid="setCustomValidity()" 
+                                                               placeholder="Please enter number of rooms *" 
+                                                                required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter rooms ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
-                                                            onkeypress="return isNumberKey(event)" 
-                                                            onkeyup="lettersOnly(this)">
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)">
                                                     </div>
                                                 </div>
                                             </div>
@@ -959,17 +1186,21 @@
                                         <div class="row">
                                             <div class="col-sm-5">
                                                     <div class="form-group">
-                                                        <label for="form_name">Customer ID: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)" 
+                                                        <l
+                                                        abel for="form_name">Customer ID: </label>
+                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
+                                                               onkeyup ="alphaOnly(this)" 
                                                                id="CUSTOMER_ID" 
                                                                type="text" 
                                                                name="CUSTOMER_ID" 
                                                                class="form-control" 
-                                                               placeholder="Please enter customer ID *" 
+                                                               placeholder="Please enter customers' ID *" 
                                                                required="required" 
                                                                data-error="Customer ID is required." 
-                                                               >
+                                                               required oninvalid="setCustomValidity('Please enter an existing customer ID ')" 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup="lettersOnly(this)">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                             </div>
@@ -983,8 +1214,10 @@
                                                                type="file" 
                                                                name="PICTURE"  
                                                                placeholder="Browse image"    
-                                                               value="{{$row->PICTURE}}"> 
-
+                                                               value="{{$row->PICTURE}}"
+                                                               required="required" 
+                                                               data-error="Pictre is required." 
+                                                            >
 
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -997,7 +1230,7 @@
                                                                type="DATE" 
                                                                name="DATE_SUBMITTED" 
                                                                class="form-control" 
-                                                               placeholder="Please enter valid date submitted" 
+                                                               placeholder="Please enter date *" 
                                                                required="required" 
                                                                data-error="Date submitted field is required.">
 
@@ -1010,8 +1243,7 @@
         								</div>
                                      
                                         <div class="container col-md-12" style="background-color:#f1f1f1; padding: 16px;">
-                                            <div class="col-md-4" 
-                                            	 style="float: left;">
+                                            <div class="col-md-4" style="float: left;">
                                                 <button type="button" 
                                                 		onclick="document.getElementById('id03{{$row->PROPERTY_ID}}').style.display='none'" 
                                                 		class="cancelbtn">Cancel</button>
@@ -1202,6 +1434,172 @@ $("#POOL").keyup(function(event) {
 
 </script>
 
+
+
+<script>
+
+  //var modal = document.getElementById('myModal');
+
+// When the user clicks anywhere outside of the modal, close it
+
+/*
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+  // var modal = document.getElementById('myModal');
+
+
+// Get the button that opens the modal
+var btn = document.getElementById("singlebutton");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+}
+*/
+function login() {
+  var sign = document.getElementById('signin');
+  sign.classList.remove("hidden");
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+  
+
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  if(dots[slideIndex-1].alt!=""){
+  captionText.innerHTML = dots[slideIndex-1].alt;}
+}
+
+  function btnminus(){
+     var now = $(".m1").val();
+                if ($.isNumeric(now)){
+                    if (parseInt(now) -1 > 0){ now--;}
+                    $(".m1").val(now);
+                }else{
+                    $(".m1").val("1");
+                }
+  } 
+  function btnplus(){
+    var now = $(".m1").val();
+                if ($.isNumeric(now)){
+                    $(".m1").val(parseInt(now)+1);
+                }else{
+                    $(".m1").val("1");
+                }
+  } 
+  function btnminus2(){
+     var now2 = $(".m2").val();
+                
+                if ($.isNumeric(now2)){
+                    if (parseInt(now2) -1 > 9){ now2=now2 - 10;}
+                    $(".m2").val(now2);
+                }else{
+                    $(".m2").val("1");
+                }
+  } 
+  function btnplus2(){
+    var now2 = $(".m2").val();
+                if ($.isNumeric(now2)){
+                    $(".m2").val(parseInt(now2)+10);
+                }else{
+                    $(".m2").val("1");
+                }
+  } 
+  function btnminus3(){
+    var now3 = $(".m3").val();
+                if ($.isNumeric(now3)){
+                    if (parseInt(now3) -1 > 9){ now3=now3-10;}
+                    $(".m3").val(now3);
+                }else{
+                    $(".m3").val("1");
+                }
+  } 
+  function btnplus3(){
+    var now3 = $(".m3").val();
+                if ($.isNumeric(now3)){
+                    $(".m3").val(parseInt(now3)+10);
+                }else{
+                    $(".m3").val("1");
+                }
+  } 
+$(document).ready(function(){
+
+
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
 
 
 
