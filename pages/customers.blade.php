@@ -86,7 +86,7 @@
                                             <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Telephone</label>
-                                                        <input value="{{$row->TELEPHONE}}" id="TELEPHONE" type="number" name="TELEPHONE" class="form-control" placeholder="Please enter phone*" required oninvalid="setCustomValidity('Please enter correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
+                                                        <input value="{{$row->TELEPHONE}}" id="TELEPHONE" type="text" pattern="\d*" maxlength="8" name="TELEPHONE" class="form-control" placeholder="Please enter phone*" required oninvalid="setCustomValidity('Please enter correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
                                                             onkeypress="return isNumberKey(event)" onkeyup="lettersOnly(this)">
                                                     </div>
                                                 </div>
@@ -180,7 +180,7 @@
                                             <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Telephone</label>
-                                                        <input id="TELEPHONE" type="number" name="TELEPHONE" class="form-control" placeholder="Please enter phone*" required oninvalid="setCustomValidity('Please enter correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
+                                                        <input id="TELEPHONE" type="text" pattern="\d*" maxlength="8" name="TELEPHONE" class="form-control" placeholder="Please enter phone*" required oninvalid="setCustomValidity('Please enter correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
                                                             onkeypress="return isNumberKey(event)" onkeyup="lettersOnly(this)">
                                                     </div>
                                                 </div>
