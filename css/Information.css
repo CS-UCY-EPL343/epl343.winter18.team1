@@ -1,0 +1,120 @@
+<style>
+  body {
+     font: 400 15px Lato, sans-serif;
+     line-height: 1.8;
+     color: black;
+     background: white;
+}
+ .container-fluid {
+     padding: 60px 50px;
+}
+ .bg-grey {
+     background-color: #f6f6f6;
+}
+ .logo-small {
+     color: #f4511e;
+     font-size: 50px;
+}
+ .logo {
+     color: #f4511e;
+     font-size: 200px;
+}
+ .navbar {
+     margin-bottom: 0;
+     background-color: #f4511e;
+     z-index: 9999;
+     border: 0;
+     font-size: 12px !important;
+     line-height: 1.42857143 !important;
+     letter-spacing: 4px;
+     border-radius: 0;
+     font-family: Montserrat, sans-serif;
+}
+ .navbar li a, .navbar .navbar-brand {
+     color: #fff !important;
+}
+ .navbar-nav li a:hover, .navbar-nav li.active a {
+     color: #f4511e !important;
+     background-color: #fff !important;
+}
+ .navbar-default .navbar-toggle {
+     border-color: transparent;
+     color: #fff !important;
+}
+ .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+     color: #555;
+     background-color: #cd3100;
+}
+ footer .glyphicon {
+     font-size: 20px;
+     margin-bottom: 20px;
+     color: #f4511e;
+}
+ .slideanim {
+    visibility:hidden;
+}
+ .slide {
+     animation-name: slide;
+     -webkit-animation-name: slide;
+     animation-duration: 1s;
+     -webkit-animation-duration: 1s;
+     visibility: visible;
+}
+ .form-control{
+     display: unset;
+}
+ navbar-nav>li>a {
+     background-color: #f4511e;
+}
+ @keyframes slide {
+     0% {
+         opacity: 0;
+         transform: translateY(70%);
+    }
+     100% {
+         opacity: 1;
+         transform: translateY(0%);
+    }
+}
+ @-webkit-keyframes slide {
+     0% {
+         opacity: 0;
+         -webkit-transform: translateY(70%);
+    }
+     100% {
+         opacity: 1;
+         -webkit-transform: translateY(0%);
+    }
+}
+ @media screen and (max-width: 768px) {
+     .col-sm-4 {
+         text-align: center;
+         margin: 25px 0;
+    }
+     .btn-lg {
+         width: 100%;
+         margin-bottom: 35px;
+    }
+}
+ @media screen and (max-width: 480px) {
+     .logo {
+         font-size: 150px;
+    }
+}
+ .about-section {
+     padding: 4em 0;
+}
+ .site-title {
+     padding: 2em 0;
+}
+ .site-title h3 {
+     font-size: 3.5em;
+     color: white;
+     font-family: Montserrat, sans-serif;
+     font-weight: 700;
+}
+ .site-title p {
+     font-size: 1.1em;
+     color: white;
+     line-height: 1.8em;
+     margin-to
