@@ -275,11 +275,6 @@ $('#checkboxes0')
       //console.log($(this).val());
     });
 
-
-
-
-
-
   $("#LAST_NAME").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#submition").click();
