@@ -121,15 +121,15 @@ class ArticlesController extends Controller
      */
     public function update(Request $req)
     {     
-        $record = $req->input('ARTICLE_ID');
-        $DOCUMENT = $req->input('DOCUMENT');
-        $TITLE = $req->input('TITLE');
-        $IMAGE = $req->input('IMAGE');
+        $record = $req->input('ARTICLE_ID1');
+        $DOCUMENT = $req->input('DOCUMENT1');
+        $TITLE = $req->input('TITLE1');
+        $IMAGE = $req->input('IMAGE1');
         //$IMAGE = "images/" . $req->input('IMAGE');
         //$file = $req->file('IMAGE');
         //$IMAGE = $file->getClientOriginalName();
         //$file->move('images/', $IMAGE);
-        $DATE = $req->input('DATE');
+        $DATE = $req->input('DATE1');
 
         $data = array('DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
 
@@ -146,7 +146,7 @@ class ArticlesController extends Controller
      */
     public function destroy(Request $req)
     {
-        $record = $req->input('ARTICLE_ID');
+        $record = $req->input('ARTICLE_ID2');
 
         \DB::table('ARTICLE')->where('ARTICLE_ID',$record)->delete();
         return redirect()->back();
