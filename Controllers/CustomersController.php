@@ -111,12 +111,12 @@ class CustomersController extends Controller
      */
     public function update(Request $req)
     {     
-        $record = $req->input('ID');
-        $NAME = $req->input('NAME');
-        $SURNAME = $req->input('SURNAME');
-        $TELEPHONE = $req->input('TELEPHONE');
-        $EMAIL = $req->input('EMAIL');
-        $COMMENTS = $req->input('COMMENTS');
+        $record = $req->input('ID1');
+        $NAME = $req->input('NAME1');
+        $SURNAME = $req->input('SURNAME1');
+        $TELEPHONE = $req->input('TELEPHONE1');
+        $EMAIL = $req->input('EMAIL1');
+        $COMMENTS = $req->input('COMMENTS1');
 
         $data = array('NAME'=>$NAME,'SURNAME'=>$SURNAME,'TELEPHONE'=>$TELEPHONE,'EMAIL'=>$EMAIL,'COMMENTS'=>$COMMENTS);
 
@@ -133,7 +133,7 @@ class CustomersController extends Controller
      */
     public function destroy(Request $req)
     {
-        $record = $req->input('ID');
+        $record = $req->input('ID21');
 
         \DB::table('CUSTOMER')->where('ID',$record)->delete();
         return redirect()->back();
