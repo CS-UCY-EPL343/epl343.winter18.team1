@@ -124,8 +124,8 @@ class ArticlesController extends Controller
         $record = $req->input('ARTICLE_ID');
         $DOCUMENT = $req->input('DOCUMENT');
         $TITLE = $req->input('TITLE');
-        //$IMAGE = $req->input('IMAGE');
-        $IMAGE = "images/" . $req->input('IMAGE');
+        $IMAGE = $req->input('IMAGE');
+        //$IMAGE = "images/" . $req->input('IMAGE');
         //$file = $req->file('IMAGE');
         //$IMAGE = $file->getClientOriginalName();
         //$file->move('images/', $IMAGE);
