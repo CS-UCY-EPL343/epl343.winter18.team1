@@ -20,13 +20,8 @@
 <link rel="stylesheet" type="text/css" href="{{ url('/css/Information.css') }}">
 
 <body>
-	@extends('main') @section('navbar')
-    </ul>
-    </div>
+	@include('main')
 
-    </div>
-    </nav>
-    @endsection
     <div class="row">
         <br/>
 
@@ -59,7 +54,7 @@
                             </tr>
                             <div id="id01{{$row->ARTICLE_ID}}" class="modal slmodal">
                                 <div class="modal-content animate" name="slmodal">
-                                    <form method="post" action="{{url('ArticlesUpdate')}}" role="form" id="sldata">
+                                    <form method="post" action="ArticlesUpdate" role="form" id="sldata">
                                         {{csrf_field()}}
                                         <div class="container" style="padding: 16px;">
                                             <div class="row">
@@ -81,7 +76,7 @@
                                                     <div class="form-group">
                                                         <label for="form_message">Image</label>    
                                                         <!--First upload the image on the server and then get the image url from the db and display it on the website-->                     
-                                                        <input id="IMAGE" type="file" name="IMAGE" class="form-control" placeholder="Browse image*" required="required" data-error="Image is required.">
+                                                        <input id="IMAGE" type="file" name="IMAGE" class="form-control" placeholder="Browse image*">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -101,13 +96,16 @@
                                             <div class="col-md-4" style="float: left;">
                                                 <input name="DATE" id="DATE" class="hidden ID" value="{{$row->DATE}}">
                                             </div>
+                                            <div class="col-md-4" style="float: left;">
+                                                <input name="IMAGE" id="IMAGE" class="hidden ID" value="{{$row->IMAGE}}">
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div id="id02{{$row->ARTICLE_ID}}" class="modal">
                                 <div class="modal-content animate modal-sm">
-                                    <form method="post" action="{{url('ArticlesDestroy')}}" role="form" id="sldata">
+                                    <form method="post" action="ArticlesDestroy" role="form" id="sldata">
                                         {{csrf_field()}}
                                             <div class="container-fluid" style="text-align: center; padding: 0;">
                                                 <p style="font-size: 25px;">Do you want to delete the notification from article: <b>{{$row->ARTICLE_ID}}</b>?</p>
@@ -136,7 +134,7 @@
                         </thead>
                         <div id="id03{{$row->ARTICLE_ID}}" class="modal slmodal">
                                 <div class="modal-content animate" name="slmodal">
-                                    <form method="post" action="{{url('ArticlesAdd')}}" role="form" id="sldata">
+                                    <form method="post" action="ArticlesAdd" role="form" id="sldata">
                                         {{csrf_field()}}
                                         <div class="container" style="padding: 16px;">
                                             <div class="row">
@@ -203,6 +201,7 @@
 </body>
 
 <script type="text/javascript">
+
   $("#NAME").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#submition").click();
