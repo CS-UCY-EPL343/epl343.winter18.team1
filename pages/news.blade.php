@@ -18,36 +18,8 @@
 </head>
 <link rel="stylesheet" type="text/css" href="{{ url('/css/news.css') }}">
 
-<body>
-  <nav class="navbar navbar-default navbar-fixed-top" style="height: 80px;">
-  <div class="container" style="width: 100%;">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="home"><img name="img" id="logo" src="images/logo.png" height="50px" width="155px"></a>
-    </div>
-    <div class="collapse navbar-collapse col-sm-8" id="myNavbar" style="top: 15px;">
-    	<ul class="nav navbar-nav">
-          <li><a href="home">HOME</a></li>
-          <li class="dropdown mega-dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">SERVICES<span class="caret"></span></a>        
-            <ul class="dropdown-menu" style="background: #f4511e;">
-                    <li onclick="buyrent()"><a href="BuyRent">TO SALE / TO RENT</a></li>
-                    <li><a href="SellLet">SELL / LET</a></li>
-                </ul>       
-          </li>
-                
-                <li><a href="about">ABOUT US</a></li>
-            <li onclick="contact()"><a href="contact">CONTACT US</a></li>
-            <li><a href="news">NEWS</a></li>
-        </ul>
-			</div>
-			
-  </div>
-</nav>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+@include('main')
 
   <div class="container-fluid" style="margin-top: 40px; color: white;">
     <h1>Latest News</h1>
@@ -60,29 +32,60 @@
 
     @foreach($ARTICLE as $row)
 
-    <!--"{{$row->IMAGE}}"-->
-    <!--document.getElementById('imageBox').src = "img/apple_" + total + ".png";-->
-    <!--<article class="white-panel"><img src="images/r+'$i'+.jpg" alt="">-->
-    <!--<article class="white-panel"><img src="`images/${row->IMAGE}`" alt="">-->
-    <!--<article class="white-panel"><img src="data:image/png;base64,{{ chunk_split(base64_encode($row->IMAGE)) }}" alt="">-->
-    <!--<article class="white-panel"><img src= "'images/' + {{$row->IMAGE}}" alt="">-->
-        <article class="white-panel"><img src= "{{$row->IMAGE}}" alt="">
-        <h4>{{$row->TITLE}}</h4>
-        <p>{{$row->DATE}}</p>
-        <p>{{$row->DOCUMENT}}</p>
-      </article>
-    @endforeach
+<!--"{{$row->IMAGE}}"-->
+<!--document.getElementById('imageBox').src = "img/apple_" + total + ".png";-->
+<!--<article class="white-panel"><img src="images/r+'$i'+.jpg" alt="">-->
+<!--<article class="white-panel"><img src="`images/${row->IMAGE}`" alt="">-->
+<!--<article class="white-panel"><img src="data:image/png;base64,{{ chunk_split(base64_encode($row->IMAGE)) }}" alt="">-->
+<!--<article class="white-panel"><img src= "'images/' + {{$row->IMAGE}}" alt="">-->
+    <article class="white-panel"><img src= "{{$row->IMAGE}}" alt="">
+    <h4>{{$row->TITLE}}</h4>
+    <p>{{$row->DATE}}</p>
+    <p>{{$row->DOCUMENT}}</p>
+  </article>
+@endforeach
 
-    </section>
+</section>
 </div>
-	
+
+<footer class="container-fluid text-center">
+  <div class="row">
+    <a href="#myPage" title="To Top" style="background-color: transparent;">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+  </div>
+  <div class="row">
+    <a href="PrivacyPolicy"style="background-color: transparent; color: white">Privacy Policy</a><p>
+    <a href="TermsAndConditions"style="background-color: transparent; color: white">Terms & Conditions</a>
+    <p>© Copyright 2018. Orphanou Nicos ltd. All Rights Reserved. Sitemap.
+    Real Estate Website Design by EPL449 Team 1</p>
+  </div>
+</footer>
+
 </body>
 
 <script>
 
-function myFunction(){
+$(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
 
-}
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
 
 $(document).ready(function() {
 $('#pinBoot').pinterest_grid({
@@ -234,18 +237,4 @@ single_column_breakpoint: 700
     }
 
 })(jQuery, window, document);
-
-	$(document).ready(function(){
-		
-    $(".dropdown").hover(            
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
-            $(this).toggleClass('open');        
-        },
-        function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("400");
-            $(this).toggleClass('open');       
-        }
-    );
-});
 </script>
