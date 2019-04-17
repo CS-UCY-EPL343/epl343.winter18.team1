@@ -112,13 +112,13 @@ class EmployeesController extends Controller
      */
     public function update(Request $req)
     {     
-        $record = $req->input('EMPLOYEE_ID');
-        $NAME = $req->input('NAME');
-        $SURNAME = $req->input('SURNAME');
-        $TELEPHONE = $req->input('TELEPHONE');
-        $EMAIL = $req->input('EMAIL');
-         $SALARY= $req->input('SALARY');
-        $ADDRESS=$req->input('ADDRESS');
+        $record = $req->input('EMPLOYEE_ID1');
+        $NAME = $req->input('NAME1');
+        $SURNAME = $req->input('SURNAME1');
+        $TELEPHONE = $req->input('TELEPHONE1');
+        $EMAIL = $req->input('EMAIL1');
+         $SALARY= $req->input('SALARY1');
+        $ADDRESS=$req->input('ADDRESS1');
 
         $data = array('NAME'=>$NAME,'SURNAME'=>$SURNAME,'TELEPHONE'=>$TELEPHONE,'EMAIL'=>$EMAIL,'SALARY'=>$SALARY,'ADDRESS'=>$ADDRESS);
 
@@ -135,7 +135,7 @@ class EmployeesController extends Controller
      */
     public function destroy(Request $req)
     {
-        $record = $req->input('EMPLOYEE_ID');
+        $record = $req->input('Empid21');
 
         \DB::table('EMPLOYEE')->where('EMPLOYEE_ID',$record)->delete();
         return redirect()->back();
