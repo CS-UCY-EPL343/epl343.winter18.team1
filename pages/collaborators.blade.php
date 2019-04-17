@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
@@ -16,344 +17,26 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  
 </head>
-<style>
-  body {
-     font: 400 15px Lato, sans-serif;
-     line-height: 1.8;
-     color: black;
-     background: white;
-}
- .container-fluid {
-     padding: 60px 50px;
-}
- .bg-grey {
-     background-color: #f6f6f6;
-}
- .logo-small {
-     color: #f4511e;
-     font-size: 50px;
-}
- .logo {
-     color: #f4511e;
-     font-size: 200px;
-}
- .navbar {
-     margin-bottom: 0;
-     background-color: #f4511e;
-     z-index: 9999;
-     border: 0;
-     font-size: 12px !important;
-     line-height: 1.42857143 !important;
-     letter-spacing: 4px;
-     border-radius: 0;
-     font-family: Montserrat, sans-serif;
-}
- .navbar li a, .navbar .navbar-brand {
-     color: #fff !important;
-}
- .navbar-nav li a:hover, .navbar-nav li.active a {
-     color: #f4511e !important;
-     background-color: #fff !important;
-}
- .navbar-default .navbar-toggle {
-     border-color: transparent;
-     color: #fff !important;
-}
- .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-     color: #555;
-     background-color: #cd3100;
-}
- footer .glyphicon {
-     font-size: 20px;
-     margin-bottom: 20px;
-     color: #f4511e;
-}
- .slideanim {
-    visibility:hidden;
-}
- .slide {
-     animation-name: slide;
-     -webkit-animation-name: slide;
-     animation-duration: 1s;
-     -webkit-animation-duration: 1s;
-     visibility: visible;
-}
- .form-control{
-     display: unset;
-}
- navbar-nav>li>a {
-     background-color: #f4511e;
-}
- @keyframes slide {
-     0% {
-         opacity: 0;
-         transform: translateY(70%);
-    }
-     100% {
-         opacity: 1;
-         transform: translateY(0%);
-    }
-}
- @-webkit-keyframes slide {
-     0% {
-         opacity: 0;
-         -webkit-transform: translateY(70%);
-    }
-     100% {
-         opacity: 1;
-         -webkit-transform: translateY(0%);
-    }
-}
- @media screen and (max-width: 768px) {
-     .col-sm-4 {
-         text-align: center;
-         margin: 25px 0;
-    }
-     .btn-lg {
-         width: 100%;
-         margin-bottom: 35px;
-    }
-}
- @media screen and (max-width: 480px) {
-     .logo {
-         font-size: 150px;
-    }
-}
- .about-section {
-     padding: 4em 0;
-}
- .site-title {
-     padding: 2em 0;
-}
- .site-title h3 {
-     font-size: 3.5em;
-     color: white;
-     font-family: Montserrat, sans-serif;
-     font-weight: 700;
-}
- .site-title p {
-     font-size: 1.1em;
-     color: white;
-     line-height: 1.8em;
-     margin-top: 0.5em;
-}
- .about-inner-column h4 {
-     font-size: 2.5em;
-     color: #FFD001;
-     font-family: Montserrat, sans-serif;
-}
- .about-inner-column p {
-     font-size: 1.1em;
-     color: #333333;
-     line-height: 1.8em;
-     margin: 1em 0 0;
-}
- .about-inner-column ul li a {
-     color: #333333;
-     font-size: 1.1em;
-     padding-left: 2em;
-}
- .about-right img {
-     width: 100%;
-}
- table {
-     border-collapse: collapse;
-     border-spacing: 0;
-     width: 100%;
-     border: 2px solid #ddd;
-}
- th, td {
-     text-align: left;
-     padding: 16px;
-}
- tr:nth-child(even){
-    background-color: #f2f2f2
-}
- i{
-     color: #26b2ad;
-     font-size: 2em !important;
-}
- .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-     color: #555;
-     cursor: default;
-     background-color: #fff;
-     border: 3px solid #ddd;
-     border-bottom-color: transparent;
-}
- .nav-tabs>li>a {
-     margin-right: 2px;
-     line-height: 1.42857143;
-     border: 1px solid transparent;
-     border-radius: 4px 4px 0 0;
-     background-color: #d7dfe6;
-}
-/* Extra styles for the cancel button */
- .cancelbtn {
-     width: auto;
-     padding: 10px 18px;
-     background-color: #f44336;
-}
-/* Center the image and position the close button */
- .imgcontainer {
-     text-align: center;
-     margin: 24px 0 12px 0;
-     position: relative;
-}
- img.avatar {
-     width: 40%;
-     border-radius: 50%;
-}
-/*.container {
-     padding: 16px;
-}
-*/
- span.psw {
-     float: right;
-     padding-top: 16px;
-}
-/* The Modal (background) */
- .modal {
-     display: none;
-    /* Hidden by default */
-     position: fixed;
-    /* Stay in place */
-     z-index: 1;
-    /* Sit on top */
-     left: 0;
-     top: 0;
-     width: 100%;
-    /* Full width */
-     height: 100%;
-    /* Full height */
-     overflow: auto;
-    /* Enable scroll if needed */
-     background-color: rgb(0,0,0);
-    /* Fallback color */
-     background-color: rgba(0,0,0,0.4);
-    /* Black w/ opacity */
-     padding-top: 60px;
-}
- .modal2 {
-     display: none;
-    /* Hidden by default */
-     position: fixed;
-    /* Stay in place */
-     z-index: 1;
-    /* Sit on top */
-     left: 0;
-     top: 0;
-     width: 50%;
-    /* Full width */
-     height: 50%;
-    /* Full height */
-     overflow: auto;
-    /* Enable scroll if needed */
-     background-color: rgb(0,0,0);
-    /* Fallback color */
-     background-color: rgba(0,0,0,0.4);
-    /* Black w/ opacity */
-     padding-top: 60px;
-}
-/* Modal Content/Box */
- .modal-content {
-     background-color: #fefefe;
-     margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-     border: 1px solid #888;
-     width: 80%;
-    /* Could be more or less, depending on screen size */
-}
- .modal-content2 {
-     background-color: #fefefe;
-     margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-     border: 1px solid #888;
-     width: 30%;
-    /* Could be more or less, depending on screen size */
-}
-/* The Close Button (x) */
- .close {
-     position: absolute;
-     right: 25px;
-     top: 0;
-     color: #000;
-     font-size: 35px;
-     font-weight: bold;
-}
- .close:hover, .close:focus {
-     color: red;
-     cursor: pointer;
-}
-/* Add Zoom Animation */
- .animate {
-     -webkit-animation: animatezoom 0.6s;
-     animation: animatezoom 0.6s 
-}
- @-webkit-keyframes animatezoom {
-     from {
-        -webkit-transform: scale(0)
-    }
-     to {
-        -webkit-transform: scale(1)
-    }
-}
- @keyframes animatezoom {
-     from {
-        transform: scale(0)
-    }
-     to {
-        transform: scale(1)
-    }
-}
-/* Change styles for span and cancel button on extra small screens */
- @media screen and (max-width: 300px) {
-     span.psw {
-         display: block;
-         float: none;
-    }
-     .cancelbtn {
-         width: 100%;
-    }
-}
- input[type=checkbox] {
-     margin: 7px 0 0;
-     margin-top: 1px \9;
-     line-height: normal;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    margin-left: 0.5em;
-    width: 350px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="{{ url('/css/Information.css') }}">
 <body>
-    @extends('main') @section('navbar')
-    </ul>
-    </div>
-
-    </div>
-    </nav>
-    @endsection
+    @include('main') 
+    
     <div class="row">
         <br/>
-
         <div class="col-md-12 container-fluid" style="margin-top: -30px;">
-            <ul class="nav nav-tabs" style="margin-top: 70px;">
-                <li class="active"><a href="#sltablediv" style="color: #555;">Collaborators Form</a></li>
-            </ul>
+            
             <div class="tab-content">
                 <div id="sltablediv" class="tab-pane fade in active">
-                    <h1 align="center" {{-- style="margin-top: 70px;" --}}>Collaborators Information</h1>
+                    <h1 align="center" {{-- style="margin-top: 70px;" --}}>Collaborators Personal Information</h1>
                     <table class="table table-bordered" id="sltable">
                         <thead>
                             <tr>
                                 <th>No License</th>
                                 <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Phone Number</th>
+                                <th>Surname</th>
                                 <th>Address</th>
                                 <th>Email</th>
+                                <th>Phone Number</th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="color: red;"></i></th>
                             </tr>
@@ -368,98 +51,243 @@
                                 <td>{{$row->EMAIL}}</td>
                                 <td>{{$row->PHONENUMBER}}</td>
                                 
-                                <td style="text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer;" onclick="document.getElementById('id01{{$row->NoLicense}}').style.display='block'"></i></td>
-                                <td style="text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="cursor: pointer; color: red;" onclick="document.getElementById('id02{{$row->NoLicense}}').style.display='block'"></i></td>
+
+                                 <td style="text-align: center;"><i id="editcoll" class="fa fa-pencil-square-o editcoll" data-license="{{$row->NoLicense}}" data-firstname="{{$row->NAME }}" data-surnname="{{$row->SURNAME}}" data-phonenumber="{{$row->PHONENUMBER}}"data-email="{{$row->EMAIL}}" data-address="{{$row->ADDRESS}}"   aria-hidden="true" style="cursor: pointer;"></i></td>
+
+                                 <td style="text-align: center;"><i id="delcoll" class="fa fa-trash-o delcoll" data-license="{{$row->NoLicense}}" data-firstname="{{$row->NAME }}" data-surnname="{{$row->SURNAME}}" data-phonenumber="{{$row->PHONENUMBER}}"data-email="{{$row->EMAIL}}" data-address="{{$row->ADDRESS}}" aria-hidden="true" style="cursor: pointer; color: red;"></i></td>
                             </tr>
-                            <div id="id01{{$row->NoLicense}}" class="modal slmodal">
-                                <div class="modal-content animate" name="slmodal">
-                                    <form method="post" action="{{url('CollaboratorsUpdate')}}" role="form" id="sldata">
+                           <div ID="CollUpdate" class="modal fade" role="dialog">
+                             <div class="modal-dialog" style="width: 900px;">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                                        <h3 class="text-center">Update Collaborator's Information</h3>
+                                    </div>
+                                    <div class="modal-body">    
+                                    <br />
+                                    <div class="hidden"><input type="text" name="ID8" id="ID8"></div>
+                                    <form class="form-horizontal" method="post" action="CollaboratorsUpdate" role="form" >
                                         {{csrf_field()}}
-                                        <div class="container" style="padding: 16px;">
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                <div class="form-group">
+                                                        <label for="NoLicense">No License</label>
+                                                        <input id="NoLicense0" type="text" name="NoLicense0" class="form-control" placeholder="Please enter the License Number" required="required" data-error="License Number is required." disabled>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_name">First Name</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME" type="text" name="NAME" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required." value="{{$row->NAME}}">
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME1" type="text" maxlength ="20"name="NAME1" class="form-control" placeholder="Please enter  first name *" required="required" data-error="First name is required." >
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
-                                                        <label for="form_lastname">Last Name</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="form_lastname" type="text" name="SURNAME" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required." value="{{$row->SURNAME}}">
+                                                        <label for="form_lastname">Surname</label>
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="SURNAME1" type="text"  maxlength ="20"name="SURNAME1" class="form-control" placeholder="Please enter surname *" required="required" data-error="Surname is required." >
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <label for="form_phone">Phone Number</label>
+                                                        <input value="{{$row->PHONENUMBER}}" id="PHONENUMBER1" type="text" pattern ="\d*" maxlength ="18" name="PHONENUMBER1" class="form-control" placeholder="Please enter phone number*" required oninvalid="setCustomValidity('Please enter correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
+                                                            onkeypress="return isNumberKey(event)" onkeyup="lettersOnly(this)">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="form_email">Email</label>
+                                                        <input id="EMAIL1" type="email" maxlength ="50"name="EMAIL1" class="form-control" placeholder="Please enter email *" required="required" data-error="Valid email is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="form_email">Address</label>
+                                                        <input id="ADDRESS1" type="text"  maxlength ="50"name="ADDRESS1" class="form-control" placeholder="Please enter address *" required="required" data-error="Valid address is required." >
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                              
+                                            <div class="modal-footer">
+                                                <input id="editsubmit" type="submit" class="btn btn-primary editsubmit" align="center" value="Save">
+                                                <input name="NoLicense1" id="NoLicense1" class="hidden ID">
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                          <!-- div ID="CollDestroy" class="modal fade" role="dialog">
+                            <div class="modal-dialog" style="width: 900px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                                   <h3 class="text-center">Delete Collaborator's Form</h3>
+                                </div>
+                          <div class="modal-body"> 
+                          <br/>
+                          <div class="hidden"><input type="text" name="ID8" id="ID8"></div>
+                                     <form method="post" action="CollaboratorsDestroy" role="form" id="sldata">
+                                        {{csrf_field()}}
+                                            <div class="" style="text-align: center; padding: 0;">
+                                            	<h4 class="modal-title"></h4>
+                                                <p style="font-size: 15px;">Do you want to delete <b>{{$row->NAME}} {{$row->SURNAME}}</b>'s form ?</p>
+                                            </div>
+
+                                                <div class="modal-footer">
+                                                    <input id="submition" type="submit" class="btn btn-primary" align="center" value="Delete">
+                                                    <input name="NoLicense2" id="NoLicense2" class="hidden ID">
+                                                </div>
+
+                                    </form>
+                                    </div>
+                                </div> -->
+
+    <!-- Modal form to delete a form -->
+    <div ID="CollDestroy" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content">
+                <div class="modal-header" style="height: 50px;">
+                    <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                </div>
+                 <h3 class="text-center">Do you want to delete collaborator's form?</h3>
+                <div class="modal-body">
+                    <br />
+                    <div class="hidden"><input type="text" name="ID3" id="ID8"></div>
+                    <form class="form-horizontal" role="form" method="post" action="CollaboratorsDestroy">
+                    	{{csrf_field()}}
+                    	<div class="row">
+	                        <div class="form-group">
+	                            <label class="control-label col-sm-2" for="ID0">No License:</label>
+	                            <div class="col-sm-6">
+	                                <input type="text" class="form-control" id="NoLicense2" disabled>
+	                            </div>
+	                        </div>
+                    	</div>
+                    	<br/>
+
+                    	<div class="row">
+	                        <div class="form-group">
+	                            <label class="control-label col-sm-2" for="title">First Name:</label>
+	                            <div class="col-sm-6">
+	                                <input type="name" class="form-control" id="NAME2" disabled>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <br/>
+	                    <div class="row">
+	                        <div class="form-group">
+	                            <label class="control-label col-sm-2" for="title">Surname:</label>
+	                            <div class="col-sm-6">
+	                                <input type="name" class="form-control" id="SURNAME2" disabled>
+	                            </div>
+	                        </div>
+	                    </div><br/>
+	                    <div class="row">
+	                     	<!-- <div class="form-group"> -->
+		                        <div class="modal-footer">
+			                        <input type="submit" class="btn btn-primary delete"align="center" value="Delete">
+			                        <input name="NoLicense21" id="NoLicense21" class="hidden ID">
+		                    	</div>
+		                    <!-- </div> -->
+		                </div>
+                    </form>                  
+                </div>
+            </div>
+        </div>
+    </div>
+                             @endforeach
+                                <thead>
+                            <tr>
+                                <td style="text-align: center;"><i id="addcoll" class="fa fa-plus-circle addcoll" aria-hidden="true" style="cursor: pointer; color: orange;"></i></td>
+                            </tr>
+                        </thead>
+
+                        <div ID="CollAdd" class="modal fade" role="dialog">
+                         <div class="modal-dialog" style="width: 900px;">
+                             <div class="modal-content">
+                                <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                             <h3 class="text-center">Add Collaborator's Personal Information</h3>
+                        </div>
+                    <div class="modal-body">
+                    <br />
+                    <div class="hidden"><input type="text" name="ID8" id="ID8"></div>
+                                    <form method="post" action="CollaboratorsAdd" role="form" id="sldata">
+                                        {{csrf_field()}}
+                                       <div class="container-fluid" style="padding: 16px;">
+                                            <div class="row">
+                                            	<div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="NoLicense">No License</label>
+                                                        <input id="NoLicense" type="text" maxlength ="15" name="NoLicense" class="form-control" placeholder="Please enter the License Number" required="required" data-error="License Number is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                            <div class="col-sm-5">
+                                                <div class="col-sm-3">
                                                     <div class="form-group">
-                                                        <label for="form_phone">Phone Number</label>
-                                                        <input value="{{$row->PHONENUMBER}}" id="PHONENUMBER" type="number" name="PHONENUMBER" class="form-control" placeholder="Please enter your phone number*" required oninvalid="setCustomValidity('Please enter your correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
-                                                            onkeypress="return isNumberKey(event)" onkeyup="lettersOnly(this)">
+                                                        <label for="form_name">First Name</label>
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME" type="text" maxlength ="20" name="NAME" class="form-control" placeholder="Please enter first name *" required="required" data-error="First name is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label for="form_lastname">Surname</label>
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="form_lastname" type="text" maxlength ="20" name="SURNAME" class="form-control" placeholder="Please enter surname *" required="required" data-error="Surname is required.">
+                                                        <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="form_email">Email</label>
-                                                        <input id="EMAIL" type="email" name="EMAIL" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required." value="{{$row->EMAIL}}">
-                                                        <div class="help-block with-errors"></div>
+                                                        <label for="form_phone">Phone Number</label>
+                                                        <input pattern="\d*" maxlength="18" id="PHONENUMBER" type="text" name="PHONENUMBER" class="form-control" placeholder="Please enter phone number*" required oninvalid="setCustomValidity('Please enter your correct phone number ')" onchange="try{setCustomValidity('')}catch(e){}"
+                                                            onkeypress="return isNumberKey(event)" onkeyup="lettersOnly(this)"  >
                                                     </div>
                                                 </div>
                                             </div>
-                                           
-                                           <div class="col-sm-6">
+                                            <div class="row">
+                                              <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="form_email">Address</label>
-                                                        <input id="ADDRESS" type="text" name="ADDRESS" class="form-control" placeholder="Please enter your address *" required="required" data-error="Valid address is required." value="{{$row->ADDRESS}}">
+                                                        <label for="form_email">Email</label>
+                                                        <input id="EMAIL" type="email" maxlength ="50"name="EMAIL" class="form-control" placeholder="Please enter email *" required="required" data-error="Valid email is required.">
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="form_message">Address</label>
+                                                        <input id="ADDRESS" type="text" maxlength ="50" name="ADDRESS" class="form-control" placeholder="Please enter address *" required="required" data-error="Valid address is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <div class="container col-md-12" style="background-color:#f1f1f1; padding: 16px;">
-                                            <div class="col-md-4" style="float: left;">
-                                                <button type="button" onclick="document.getElementById('id01{{$row->NoLicense}}').style.display='none'" class="cancelbtn">Cancel</button>
-                                            </div>
+                                        </div>
 
-                                            <div class="col-md-4" align="center">
-                                                <input id="submition" type="submit" class="btn btn-black" align="center" value="Save" style="font-size: 20px; background: transparent; border-color: #f4511e;">
-                                            </div>
-                                            <div class="col-md-4" style="float: left;">
-                                                <input name="NoLicense" id="NoLicense" class="hidden ID" value="{{$row->NoLicense}}">
-                                            </div>
+                                        <div class="modal-footer">
+                                                <input id="submition" type="submit" class="btn btn-primary" align="center" value="Add">
+                                                <input name="ID" id="ID" class="hidden ID" value="{{$row->NoLicense}}">
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <div id="id02{{$row->NoLicense}}" class="modal">
-                                <div class="modal-content animate modal-sm">
-                                    <form method="post" action="{{url('CollaboratorsDestroy')}}" role="form" id="sldata">
-                                        {{csrf_field()}}
-                                            <div class="container-fluid" style="text-align: center; padding: 0;">
-                                                <p style="font-size: 25px;">Do you want to delete the collaborator form <b>{{$row->NAME}} {{$row->SURNAME}}</b>?</p>
-                                            </div>
-
-                                            <div class="container-fluid" style="background-color:#f1f1f1; padding: 16px;">
-                                                <div class="" style="float: left;">
-                                                    <button type="button" onclick="document.getElementById('id02{{$row->NoLicense}}').style.display='none'" class="cancelbtn">Cancel</button>
-                                                </div>
-
-                                                <div class="" align="center">
-                                                    <input id="submition" type="submit" class="btn btn-black" align="center" value="Confirm" style="font-size: 20px; background: transparent; border-color: #f4511e;">
-                                                </div>
-                                                <div class="" style="float: left;">
-                                                    <input name="NoLicense" id="NoLicense" class="hidden ID" value="{{$row->NoLicense}}">
-                                                </div>
-                                            </div>
-                                    </form>
-                                    </div>
-                                </div>
-                                @endforeach
                         </tbody>
                     </table>
-                    </div>
-                    
+                    </div>           
                     </div>
                 </div>
             </div>
@@ -467,7 +295,32 @@
 
 </body>
 
-<script type="text/javascript">
+<script type="text/javascript">        
+
+        $(document).on('click', '.editcoll', function() {
+            $('#NoLicense0').val($(this).data('license'));
+            $('#NAME1').val($(this).data('firstname'));
+            $('#SURNAME1').val($(this).data('surnname'));
+            $('#PHONENUMBER1').val($(this).data('phonenumber'));
+            $('#EMAIL1').val($(this).data('email'));
+            $('#ADDRESS1').val($(this).data('address'));
+            $('#NoLicense1').val($(this).data('license'));
+
+            $('#CollUpdate').modal('show');
+        });
+
+     $(document).on('click', '.delcoll', function() {
+     	$('#NAME2').val($(this).data('firstname'));
+        $('#SURNAME2').val($(this).data('surnname'));
+     	$('#NoLicense2').val($(this).data('license'));
+     	$('#NoLicense21').val($(this).data('license'));
+        $('#CollDestroy').modal('show');
+        });
+
+     $(document).on('click', '.addcoll', function() {
+            $('#CollAdd').modal('show');
+        });
+
   $("#NAME").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#submition").click();
