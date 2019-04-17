@@ -133,7 +133,7 @@ class CustomersController extends Controller
      */
     public function destroy(Request $req)
     {
-        $record = $req->input('ID21');
+        $record = $req->input('ID2');
 
         \DB::table('CUSTOMER')->where('ID',$record)->delete();
         return redirect()->back();
