@@ -52,7 +52,6 @@
                                 <td>{{$row->EMAIL}}</td>
                                 <td style="text-align: center;"><i id="editcust" class="fa fa-pencil-square-o editcust" data-id="{{$row->ID}}" data-firstname="{{$row->NAME }}" data-surnname="{{$row->SURNAME}}" data-telephone="{{$row->TELEPHONE}}" data-email="{{$row->EMAIL}}" data-comments="{{$row->COMMENTS}}" aria-hidden="true" style="cursor: pointer;"></i></td>
                                 <td style="text-align: center;"><i id="delcust" class="fa fa-trash-o delcust" data-id="{{$row->ID}}" data-firstname="{{$row->NAME }}" data-surnname="{{$row->SURNAME}}" data-telephone="{{$row->TELEPHONE}}"data-email="{{$row->EMAIL}}" data-comments="{{$row->COMMENTS}}" aria-hidden="true" style="cursor: pointer; color: red;"></i></td>
-
                             </tr>
  <div ID="CustUpdate" class="modal fade" role="dialog">
         <div class="modal-dialog" style="width: 900px;">
@@ -71,14 +70,14 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_name">First Name</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME1" type="text" name="NAME1" class="form-control" placeholder="Please enter first name *" required="required" data-error="First name is required." value="{{$row->NAME}}">
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME1" type="text" maxlength ="20" name="NAME1" class="form-control" placeholder="Please enter first name *" required="required" data-error="First name is required." value="{{$row->NAME}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_lastname">Surname</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="SURNAME1" type="text" name="SURNAME1" class="form-control" placeholder="Please enter surname *" required="required" data-error="Surname name is required." value="{{$row->SURNAME}}">
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="SURNAME1" type="text" maxlength ="20" name="SURNAME1" class="form-control" placeholder="Please enter surname *" required="required" data-error="Surname name is required." value="{{$row->SURNAME}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -96,7 +95,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_email">Email</label>
-                                                        <input id="EMAIL1" type="email" name="EMAIL1" class="form-control" placeholder="Please enter email *" required="required" data-error="Valid email is required." value="{{$row->EMAIL}}">
+                                                        <input id="EMAIL1" type="email" name="EMAIL1" class="form-control" maxlength ="50" placeholder="Please enter email *" required="required" data-error="Valid email is required." value="{{$row->EMAIL}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -105,7 +104,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="form_message">Comments</label>
-                                                        <textarea id="COMMENTS1" name="COMMENTS1" class="form-control" placeholder="Write comments.." rows="3">{{$row->COMMENTS}}</textarea>
+                                                        <textarea id="COMMENTS1" name="COMMENTS1" class="form-control" maxlength ="100" placeholder="Write comments.." rows="3">{{$row->COMMENTS}}</textarea>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -149,12 +148,11 @@
     <div ID="CustDestroy" class="modal fade" role="dialog">
         <div class="modal-dialog" style="width: 900px;">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header"style="height: 50px;">
                     <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
-                    <h4 class="modal-title">Delete Customer's form</h4>
                 </div>
-                <div class="modal-body">
-                    <h3 class="text-center">Are you sure you want to delete this customer?</h3>
+                <h3 class="text-center">Do you want to delete customer's form?</h3>
+                <div class="modal-body">                    
                     <br />
                     <div class="hidden"><input type="text" name="ID3" id="ID0"></div>
                     <form class="form-horizontal" role="form" method="post" action="CustomersDestroy">
@@ -162,24 +160,26 @@
                     	<div class="row">
 	                        <div class="form-group">
 	                            <label class="control-label col-sm-2" for="title">First Name:</label>
-	                            <div class="col-sm-10">
+	                            <div class="col-sm-6">
 	                                <input type="name" class="form-control" id="NAME2" disabled>
 	                            </div>
 	                        </div>
 	                    </div>
+                        <br/>
 	                    <div class="row">
 	                        <div class="form-group">
 	                            <label class="control-label col-sm-2" for="title">Last Name:</label>
-	                            <div class="col-sm-10">
+	                            <div class="col-sm-6">
 	                                <input type="name" class="form-control" id="SURNAME2" disabled>
 	                            </div>
 	                        </div>
 	                    </div>
+                        <br/>
 	                    <div class="row">
 	                     	<div class="form-group">
 		                        <div class="modal-footer">
-			                        <input type="submit" class="btn btn-danger delete" value="Delete">
-			                        <input name="ID21" id="ID21" class="hidden ID">
+			                        <input type="submit" class="btn btn-primary delete" value="Delete">
+			                        <input name="ID2" id="ID2" class="hidden ID">
 		                    	</div>
 		                    </div>
 		                </div>
@@ -213,14 +213,14 @@
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_name">First Name</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME" type="text" name="NAME" class="form-control" placeholder="Please enter first name *" required="required" data-error="First name is required.">
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="NAME" maxlength ="20" type="text" name="NAME" class="form-control" placeholder="Please enter first name *" required="required" data-error="First name is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_lastname">Surname</label>
-                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="form_lastname" type="text" name="SURNAME" class="form-control" placeholder="Please enter surname *" required="required" data-error="Surname name is required.">
+                                                        <input onkeypress="return inputAlphabet(event)" onkeyup="alphaOnly(this)" id="form_lastname" maxlength ="20" type="text" name="SURNAME" class="form-control" placeholder="Please enter surname *" required="required" data-error="Surname name is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -238,7 +238,7 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_email">Email</label>
-                                                        <input id="EMAIL" type="email" name="EMAIL" class="form-control" placeholder="Please enter email *" required="required" data-error="Valid email is required.">
+                                                        <input id="EMAIL" type="email" name="EMAIL" class="form-control" maxlength ="50" placeholder="Please enter email *" required="required" data-error="Valid email is required.">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -247,7 +247,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="form_message">Comments</label>
-                                                        <textarea id="form_message" name="COMMENTS" class="form-control" placeholder="Write comments.." rows="3"></textarea>
+                                                        <textarea id="form_message" name="COMMENTS" class="form-control" maxlength ="100" placeholder="Write comments.." rows="3"></textarea>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -287,8 +287,8 @@ $(document).on('click', '.editcust', function() {
         $(document).on('click', '.delcust', function() {
      	$('#NAME2').val($(this).data('firstname'));
         $('#SURNAME2').val($(this).data('surnname'));
-     	$('#ID21').val($(this).data('id'));
-        $('#CollDestroy').modal('show');
+     	$('#ID2').val($(this).data('id'));
+        $('#CustDestroy').modal('show');
         });
 
      $(document).on('click', '.editcust', function() {
