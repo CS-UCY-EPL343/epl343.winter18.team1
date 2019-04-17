@@ -88,30 +88,6 @@ class PagesController extends Controller {
 	    return view('pages.collaborators');
 	}
 
-	public function getArticles() {
-	    return view('pages.news');
-	}
-
-	public function getArticlesUpdate() {
-	    return view('pages.news');
-	}
-
-	public function getArticlesDestroy() {
-	    return view('pages.news');
-	}
-
-	public function getArticlesAdd() {
-	    return view('pages.news');
-	}
-
-	public function getRights() {
-	    return view('pages.rights');
-	}
-
-	public function getRightsUpdate() {
-	    return view('pages.rights');
-	}
-
 	public function getTermsAndConditions() {
 	    return view('pages.TermsAndConditions');
 	}
