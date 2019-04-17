@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 
 class RightsController extends Controller
@@ -14,8 +15,8 @@ class RightsController extends Controller
      */
     public function index()
     {
-        $RIGHTS = \DB::table('RIGHTS')->get();
-        return view('pages.rights', ['RIGHTS'=>$RIGHTS]);
+        $users = \DB::table('users')->get();
+        return view('pages.rights', ['users'=>$users]);
     }
 
     /**
@@ -40,75 +41,7 @@ class RightsController extends Controller
 
     public function store(Request $req)
     {
-        $list = \DB::table('RIGHTS')->pluck('RIGHT_ID')->toArray();
-        $fn1 = $list[count($list)-1] + 1;
-        $fn2 = "sl";
-        $FORM_NO = $fn2 . $fn1;
-
-        $ID = $fn1;
-
-        $RIGHT_ID = $req->input('RIGHT_ID');
-
-        $ADD_ARTICLE = $req->input('ADD_ARTICLE');
-        $ADD_PROPERTY_PLOT = $req->input('ADD_PROPERTY_PLOT');
-        $ADD_CUSTOMER = $req->input('ADD_CUSTOMER');
-        $ADD_EMPLOYEE = $req->input('ADD_EMPLOYEE');
-        $ADD_COLLABORATOR = $req->input('ADD_COLLABORATOR');
-        $NOTIFICATIONS = $req->input('NOTIFICATIONS');
-        $ACCOUNT_ID = $req->input('ACCOUNT_ID');
-
-        $r1 = 0;
-        if($req->input('ADD_ARTICLE') == 1)
-            $r1= 1;
-        $ADD_ARTICLE = $r1;
-        $r2 = 0;
-        if($req->input('ADD_PROPERTY_PLOT') == 1)
-            $r2= 1;
-        $ADD_PROPERTY_PLOT = $r2;
-        $r3 = 0;
-        if($req->input('ADD_CUSTOMER') == 1)
-            $r3= 1;
-        $ADD_CUSTOMER = $r3;
-        $r4 = 0;
-        if($req->input('ADD_EMPLOYEE') == 1)
-            $r4= 1;
-        $ADD_EMPLOYEE = $r4;
-        $r5 = 0;
-        if($req->input('ADD_COLLABORATOR') == 1)
-            $r5= 1;
-        $ADD_COLLABORATOR = $r5;
-        $r6 = 0;
-        if($req->input('NOTIFICATIONS') == 1)
-            $r6= 1;
-        $NOTIFICATIONS = $r6;
-
-
-        $data = array('RIGHT_ID'=>$RIGHT_ID,'ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS,'ACCOUNT_ID'=>$ACCOUNT_ID);
-
-        \DB::table('RIGHTS')->insert($data);
-
-
-        //if "email" variable is filled out, send email
-        // if (isset($_REQUEST['EMAIL']))  {
-          
-        function remove_headers($string) {
-        $headers = array(
-            "/to\:/i",
-            "/from\:/i",
-            "/bcc\:/i",
-            "/cc\:/i",
-            "/Content\-Transfer\-Encoding\:/i",
-            "/Content\-Type\:/i",
-            "/Mime\-Version\:/i"
-            );
-            if (preg_replace($headers, '', $string) == $string) {
-            return $string;
-            } else {
-            die('You are not completing the form correctly.');
-            }
-        }
-           
-        return redirect()->back()->with('alert', 'Request submited!');
+       
     }
 
     /**
@@ -141,76 +74,7 @@ class RightsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $req)
-    {     
-        $record = $req->input('RIGHT_ID');
-        $ADD_ARTICLE = $req->input('ADD_ARTICLE');
-        $ADD_PROPERTY_PLOT = $req->input('ADD_PROPERTY_PLOT');
-        $ADD_CUSTOMER = $req->input('ADD_CUSTOMER');
-        $ADD_EMPLOYEE = $req->input('ADD_EMPLOYEE');
-        $ADD_COLLABORATOR = $req->input('ADD_COLLABORATOR');
-        $NOTIFICATIONS = $req->input('NOTIFICATIONS');
-
-         $r1 = 0;
-        if($req->input('ADD_ARTICLE') == 1)
-            $r1= 1;
-        $ADD_ARTICLE = $r1;
-         $data = array('ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS);
-
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->update($data);
-        return redirect()->back();
-
-       
-        $r2 = 0;
-        if($req->input('ADD_PROPERTY_PLOT') == 1)
-            $r2= 1;
-        $ADD_PROPERTY_PLOT = $r2;
-
-        $data = array('ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS);
-
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->update($data);
-        return redirect()->back();
-
-        $r3 = 0;
-        if($req->input('ADD_CUSTOMER') == 1)
-            $r3= 1;
-        $ADD_CUSTOMER = $r3;
-
-        $data = array('ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS);
-
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->update($data);
-        return redirect()->back();
-
-
-
-        $r4 = 0;
-        if($req->input('ADD_EMPLOYEE') == 1)
-            $r4= 1;
-        $ADD_EMPLOYEE = $r4;
-        $data = array('ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS);
-
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->update($data);
-        return redirect()->back();
-
-
-
-        $r5 = 0;
-        if($req->input('ADD_COLLABORATOR') == 1)
-            $r5= 1;
-        $ADD_COLLABORATOR = $r5;
-        $data = array('ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS);
-
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->update($data);
-        return redirect()->back();
-
-        $r6 = 0;
-        if($req->input('NOTIFICATIONS') == 1)
-            $r6= 1;
-        $NOTIFICATIONS = $r6;
-
-        $data = array('ADD_ARTICLE'=>$ADD_ARTICLE,'ADD_PROPERTY_PLOT'=>$ADD_PROPERTY_PLOT,'ADD_CUSTOMER'=>$ADD_CUSTOMER,'ADD_EMPLOYEE'=>$ADD_EMPLOYEE,'ADD_COLLABORATOR'=>$ADD_COLLABORATOR,'NOTIFICATIONS'=>$NOTIFICATIONS);
-
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->update($data);
-        return redirect()->back();
+    {   
 
     }
 
@@ -222,9 +86,106 @@ class RightsController extends Controller
      */
     public function destroy(Request $req)
     {
-        $record = $req->input('RIGHT_ID');
+        
+    }
 
-        \DB::table('RIGHTS')->where('RIGHT_ID',$record)->delete();
-        return redirect()->back();
+    public function changeStatus1(Request $req) 
+    {
+        $id = $req->input('id');
+        $post = User::findOrFail($id);
+        if($post->ADD_ARTICLE){
+            $post->ADD_ARTICLE=0;
+        }
+        else{
+            $post->ADD_ARTICLE=1;
+        }
+        
+        $data = array('ADD_ARTICLE'=>$post->ADD_ARTICLE);
+        \DB::table('users')->where('id',$id)->update($data);       
+        return response()->json($post);
+    }
+
+    public function changeStatus2(Request $req) 
+    {
+        $id = $req->input('id');
+        $post = User::findOrFail($id);
+        
+        if($post->ADD_PROPERTY_PLOT){
+            $post->ADD_PROPERTY_PLOT=0;
+        }
+        else{
+            $post->ADD_PROPERTY_PLOT=1;
+        }
+        
+        $data = array('ADD_PROPERTY_PLOT'=>$post->ADD_PROPERTY_PLOT);
+        \DB::table('users')->where('id',$id)->update($data);       
+        return response()->json($post);
+    }
+
+    public function changeStatus3(Request $req) 
+    {
+        $id = $req->input('id');
+        $post = User::findOrFail($id);
+        
+        if($post->ADD_CUSTOMER){
+            $post->ADD_CUSTOMER=0;
+        }
+        else{
+            $post->ADD_CUSTOMER=1;
+        }
+        
+        $data = array('ADD_CUSTOMER'=>$post->ADD_CUSTOMER);
+        \DB::table('users')->where('id',$id)->update($data);       
+        return response()->json($post);
+    }
+
+    public function changeStatus4(Request $req) 
+    {
+        $id = $req->input('id');
+        $post = User::findOrFail($id);
+        
+        if($post->ADD_EMPLOYEE){
+            $post->ADD_EMPLOYEE=0;
+        }
+        else{
+            $post->ADD_EMPLOYEE=1;
+        }
+        
+        $data = array('ADD_EMPLOYEE'=>$post->ADD_EMPLOYEE);
+        \DB::table('users')->where('id',$id)->update($data);       
+        return response()->json($post);
+    }
+
+    public function changeStatus5(Request $req) 
+    {
+        $id = $req->input('id');
+        $post = User::findOrFail($id);
+        
+        if($post->ADD_COLLABORATOR){
+            $post->ADD_COLLABORATOR=0;
+        }
+        else{
+            $post->ADD_COLLABORATOR=1;
+        }
+        
+        $data = array('ADD_COLLABORATOR'=>$post->ADD_COLLABORATOR);
+        \DB::table('users')->where('id',$id)->update($data);       
+        return response()->json($post);
+    }
+
+    public function changeStatus6(Request $req) 
+    {
+        $id = $req->input('id');
+        $post = User::findOrFail($id);
+        
+        if($post->NOTIFICATIONS){
+            $post->NOTIFICATIONS=0;
+        }
+        else{
+            $post->NOTIFICATIONS=1;
+        }
+        $data = array('NOTIFICATIONS'=>$post->NOTIFICATIONS);
+        \DB::table('users')->where('id',$id)->update($data);       
+        return response()->json($post);
     }
 }
