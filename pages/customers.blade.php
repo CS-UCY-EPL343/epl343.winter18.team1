@@ -33,7 +33,7 @@
                     <table class="table table-bordered" id="sltable">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <!-- <th>ID</th> -->
                                 <th>First Name</th>
                                 <th>Surname</th>
                                 <th>Telephone</th>
@@ -45,7 +45,7 @@
                         <tbody>
                             @foreach($CUSTOMER as $row)
                             <tr>
-                                <td>{{$row->ID}}</td>
+                                <!-- <td>{{$row->ID}}</td> -->
                                 <td>{{$row->NAME}}</td>
                                 <td>{{$row->SURNAME}}</td>
                                 <td>{{$row->TELEPHONE}}</td>
