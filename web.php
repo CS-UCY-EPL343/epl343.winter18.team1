@@ -66,7 +66,7 @@ Route::post('contactsend', 'ContactFormController@store');
 
 Route::get('TermsAndConditions', 'PagesController@getTermsAndConditions');
 
-    Route::get('PrivacyPolicy', 'PagesController@getPrivacyPolicy');
+Route::get('PrivacyPolicy', 'PagesController@getPrivacyPolicy');
 
 Route::prefix('admin')->group(function() {
 
@@ -116,7 +116,7 @@ Route::prefix('admin')->group(function() {
 
 	    Route::get('customers', 'PagesController@getCustomers');
 
-      Route::post('contactsend', 'ContactFormController@store');
+      // Route::post('contactsend', 'ContactFormController@store');
 
 	    //Route::get('CustomersUpdate', 'PagesController@getCustomersUpdate');
 
@@ -160,11 +160,19 @@ Route::prefix('admin')->group(function() {
       
       Route::get('PropertyView', 'SearchController@index');
 
-      //Route::get('PropertyUpdate', 'PagesController@getPropertyUpdate');
+      // Route::get('PropertyUpdate', 'PagesController@getPropertyUpdate');  //EFTYCHIA
       
       Route::get('PropertyImage', 'PagesController@getPropertyImage');
 
-	    //Route::get('PropertyDestroy', 'PagesController@getPropertyDestroy');
+	    // Route::get('PropertyDestroy', 'PagesController@getPropertyDestroy'); //EFTYCHIA
+
+      Route::post('PropertyDestroy', 'PropertyController@destroy'); //EFTYCHIA
+
+      Route::post('PropertyUpdate', 'PropertyController@update');
+
+      //Route::post('PropertyDestroy', 'PropertyController@destroy');
+
+      Route::post('PropertyAdd', 'PropertyController@store');
 
 	    Route::get('property', 'PropertyController@index');
 
@@ -191,6 +199,8 @@ Route::prefix('admin')->group(function() {
       Route::post('EmployeesDestroy', 'EmployeesController@destroy');
       
       Route::post('EmployeesAdd', 'EmployeesController@store');
+
+      Route::post('RightsDestroy', 'RightsController@destroy');
 
       Route::post('articles', 'ArticlesController@store');
 
@@ -222,12 +232,16 @@ Route::prefix('admin')->group(function() {
 
       Route::resource('image-gallery', 'ImageGalleryController');
 
+      Route::post('image-gallery-articles', 'ImageGalleryController@store_image_articles');
+
 	    Route::post('rights/changeStatus1', array('as' => 'changeStatus1', 'uses' => 'RightsController@changeStatus1'));
 	    Route::post('rights/changeStatus2', array('as' => 'changeStatus2', 'uses' => 'RightsController@changeStatus2'));
 	    Route::post('rights/changeStatus3', array('as' => 'changeStatus3', 'uses' => 'RightsController@changeStatus3'));
 	    Route::post('rights/changeStatus4', array('as' => 'changeStatus4', 'uses' => 'RightsController@changeStatus4'));
 	    Route::post('rights/changeStatus5', array('as' => 'changeStatus5', 'uses' => 'RightsController@changeStatus5'));
 	    Route::post('rights/changeStatus6', array('as' => 'changeStatus6', 'uses' => 'RightsController@changeStatus6'));
+
+      Route::post('update-image-gallery-articles', 'ImageGalleryController@update_image_articles');
 
 	});
 });                                                                                       ////////////////////////////////////////////////ENDS
@@ -240,7 +254,7 @@ Route::prefix('/')->group(function() {
 
     Route::resource('/notifications#srtablediv', 'BuyRentController');
 
-    Route::post('contactsend', 'ContactFormController@store');
+    // Route::post('contactsend', 'ContactFormController@store');
 
     // Route::post('/del', 'SellLetController@destroy');
 
@@ -316,9 +330,11 @@ Route::prefix('/')->group(function() {
 
     Route::get('PropertyView', 'SearchController@index');
 
-   // Route::get('PropertyDestroy', 'PagesController@getPropertyDestroy');
+    Route::get('rights', 'RightsController@index');
 
-   // Route::get('PropertyUpdate', 'PagesController@getPropertyUpdate');
+  // Route::get('PropertyDestroy', 'PagesController@getPropertyDestroy'); //EFTYCHIA
+
+   // Route::get('PropertyUpdate', 'PagesController@getPropertyUpdate');  //EFTYCHIA
 
     Route::get('PropertyImage', 'PagesController@getPropertyImage');
 
@@ -366,6 +382,9 @@ Route::prefix('/')->group(function() {
 
     Route::resource('image-gallery', 'ImageGalleryController');
 
+    Route::post('image-gallery-articles', 'ImageGalleryController@store_image_articles');
+
+    Route::post('update-image-gallery-articles', 'ImageGalleryController@update_image_articles');
+
   });
 });
-
