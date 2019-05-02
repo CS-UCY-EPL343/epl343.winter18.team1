@@ -51,6 +51,59 @@ class CustomersController extends Controller
         $TELEPHONE = $req->input('TELEPHONE');
         $EMAIL = $req->input('EMAIL');
         $COMMENTS = $req->input('COMMENTS');
+
+        if (empty($NAME)) {
+            $message = "First Name must not be empty";
+            return $message;
+        }else if(ctype_alpha(str_replace(' ', '', $NAME)) === false){
+            $message = "First Name must have only letters";
+            return $message;
+        }
+          if (empty($SURNAME)) {
+            $message = "Surname must not be empty";
+            return $message;
+        }else if(ctype_alpha(str_replace(' ', '', $SURNAME)) === false){
+            $message = "Surname must have only letters";
+            return $message;
+        }
+
+        if (empty($EMAIL)) {
+            $message = "Email must not be empty";
+            return $message;
+       } else if(!filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
+            $message = "Invalid email address format";
+           return $message;
+        }
+
+         if (empty($TELEPHONE)) {
+            $message = "Phone number must not be empty";
+            return $message;
+        }
+
+        if (strlen($NAME)>20) {
+            $message = "First Name must not exceed 20 characters";
+            return $message;
+        }
+
+        if (strlen($SURNAME)>20) {
+            $message = "Surname must not exceed 20 characters";
+            return $message;
+        }
+
+        if (strlen($COMMENTS)>100) {
+            $message = "Comments must not exceed 100 characters";
+            return $message;
+        }
+
+        if (strlen($TELEPHONE)>18) {
+            $message = "Phone number must not exceed 18 digits";
+            return $message;
+        }
+
+        if (strlen($EMAIL)>50) {
+            $message = "Email must not exceed 50 characters";
+            return $message;
+        }
         
         $data = array('ID'=>$ID,'NAME'=>$NAME,'SURNAME'=>$SURNAME,'TELEPHONE'=>$TELEPHONE,'EMAIL'=>$EMAIL,'COMMENTS'=>$COMMENTS);
 
@@ -117,6 +170,59 @@ class CustomersController extends Controller
         $TELEPHONE = $req->input('TELEPHONE1');
         $EMAIL = $req->input('EMAIL1');
         $COMMENTS = $req->input('COMMENTS1');
+
+                if (empty($NAME)) {
+            $message = "First Name must not be empty";
+            return $message;
+        }else if(ctype_alpha(str_replace(' ', '', $NAME)) === false){
+            $message = "First Name must have only letters";
+            return $message;
+        }
+          if (empty($SURNAME)) {
+            $message = "Surname must not be empty";
+            return $message;
+        }else if(ctype_alpha(str_replace(' ', '', $SURNAME)) === false){
+            $message = "Surname must have only letters";
+            return $message;
+        }
+
+        if (empty($EMAIL)) {
+            $message = "Email must not be empty";
+            return $message;
+       } else if(!filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
+            $message = "Invalid email address format";
+           return $message;
+        }
+
+         if (empty($TELEPHONE)) {
+            $message = "Phone number must not be empty";
+            return $message;
+        }
+
+        if (strlen($NAME)>20) {
+            $message = "First Name must not exceed 20 characters";
+            return $message;
+        }
+
+        if (strlen($SURNAME)>20) {
+            $message = "Surname must not exceed 20 characters";
+            return $message;
+        }
+
+        if (strlen($COMMENTS)>100) {
+            $message = "Comments must not exceed 100 characters";
+            return $message;
+        }
+
+        if (strlen($TELEPHONE)>18) {
+            $message = "Phone number must not exceed 18 digits";
+            return $message;
+        }
+
+        if (strlen($EMAIL)>50) {
+            $message = "Email must not exceed 50 characters";
+            return $message;
+        }
 
         $data = array('NAME'=>$NAME,'SURNAME'=>$SURNAME,'TELEPHONE'=>$TELEPHONE,'EMAIL'=>$EMAIL,'COMMENTS'=>$COMMENTS);
 
