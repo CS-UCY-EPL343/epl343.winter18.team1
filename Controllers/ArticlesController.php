@@ -14,8 +14,10 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $ARTICLE = \DB::table('ARTICLE')->get();
-        return view('pages.articles', ['ARTICLE'=>$ARTICLE]);
+        $images = \DB::table('image_gallery_articles')->get();
+        //$ARTICLE = \DB::table('ARTICLE')->get();
+        //return view('pages.articles', ['ARTICLE'=>$ARTICLE, 'image_gallery_articles' => $images]);
+        return view('pages.articles', ['image_gallery_articles' => $images]);
     }
 
     /**
@@ -31,8 +33,10 @@ class ArticlesController extends Controller
     public function deiksemouto()
     {
         //$ARTICLE = \DB::table('ARTICLE')->where('ARTICLE_ID', '1')->first();
-        $ARTICLE = \DB::table('ARTICLE')->orderBy('DATE','DESC')->get();
-        return view('pages.news', ['ARTICLE'=>$ARTICLE]);
+        $images = \DB::table('image_gallery_articles')->orderBy('DATE','DESC')->get();
+        // $ARTICLE = \DB::table('ARTICLE')->orderBy('DATE','DESC')->get();
+        // return view('pages.news', ['ARTICLE'=>$ARTICLE, 'image_gallery_articles' => $images]);
+        return view('pages.news', ['image_gallery_articles' => $images]);
     }
 
     /**
@@ -47,23 +51,23 @@ class ArticlesController extends Controller
 
     public function store(Request $req)
     {
-        $list = \DB::table('ARTICLE')->pluck('ARTICLE_ID')->toArray();
+        $list = \DB::table('image_gallery_articles')->pluck('id')->toArray();
         $fn1 = $list[count($list)-1] + 1;
 
         $ARTICLE_ID = $fn1;
 
         $DOCUMENT = $req->input('DOCUMENT');
-        $TITLE = $req->input('TITLE');
-        //$IMAGE = $req->input('IMAGE');
-        $IMAGE = "images/" . $req->input('IMAGE');
-        //$file = $req->file('IMAGE');
-        //$IMAGE = $file->getClientOriginalName();
-        //$file->move('images/', $IMAGE);
+        $TITLE = $req->input('title');
+        // //$IMAGE = $req->input('IMAGE');
+        // $IMAGE = $req->image->getClientOriginalName();
+        // $file = "images/" .  $IMAGE;
+        // $request->file('image')->move(public_path("/images"), $file);
         $DATE = $req->input('DATE');
         
-        $data = array('ARTICLE_ID'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
+        //$data = array('id'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'title'=>$TITLE,'image'=>$IMAGE,'DATE'=>$DATE);
+        $data = array('id'=>$ARTICLE_ID,'DOCUMENT'=>$DOCUMENT,'title'=>$TITLE,'DATE'=>$DATE);
 
-        \DB::table('ARTICLE')->insert($data);
+        \DB::table('image_gallery_articles')->insert($data);
 
         return redirect()->back()->with('alert', 'Request submited!');
     }
@@ -102,16 +106,17 @@ class ArticlesController extends Controller
         $record = $req->input('ARTICLE_ID1');
         $DOCUMENT = $req->input('DOCUMENT1');
         $TITLE = $req->input('TITLE1');
-        $IMAGE = $req->input('IMAGE1');
+        //$IMAGE = $req->input('IMAGE1');
         //$IMAGE = "images/" . $req->input('IMAGE');
         //$file = $req->file('IMAGE');
         //$IMAGE = $file->getClientOriginalName();
         //$file->move('images/', $IMAGE);
         $DATE = $req->input('DATE1');
 
-        $data = array('DOCUMENT'=>$DOCUMENT,'TITLE'=>$TITLE,'IMAGE'=>$IMAGE,'DATE'=>$DATE);
+        // $data = array('DOCUMENT'=>$DOCUMENT,'title'=>$TITLE,'image'=>$IMAGE,'DATE'=>$DATE);
+        $data = array('DOCUMENT'=>$DOCUMENT,'title'=>$TITLE,'DATE'=>$DATE);
 
-        \DB::table('ARTICLE')->where('ARTICLE_ID',$record)->update($data);
+        \DB::table('image_gallery_articles')->where('id',$record)->update($data);
         return redirect()->back();
 
     }
@@ -126,7 +131,7 @@ class ArticlesController extends Controller
     {
         $record = $req->input('ARTICLE_ID2');
 
-        \DB::table('ARTICLE')->where('ARTICLE_ID',$record)->delete();
+        \DB::table('image_gallery_articles')->where('id',$record)->delete();
         return redirect()->back();
     }
 }
