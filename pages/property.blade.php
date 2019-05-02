@@ -2,368 +2,71 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
+
   <title>Orphanou Estates</title>
-  <meta charset="utf-8">
+ <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
  
+   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    
+    
+    <style type="text/css">
+
+    .gallery
+
+    {
+
+        display: inline-block;
+
+        margin-top: 20px;
+
+    }
+
+    .close-icon{
+
+      border-radius: 50%;
+
+        position: absolute;
+
+        right: 5px;
+
+        top: -10px;
+
+        padding: 5px 8px;
+
+    }
+
+    .form-image-upload{
+
+        background: #e8e8e8 none repeat scroll 0 0;
+
+        padding: 15px;
+
+    }
+
+    </style>
+
 </head>
-<style>
-  body {
-     font: 400 15px Lato, sans-serif;
-     line-height: 1.8;
-     color: black;
-     background: white;
-}
- .container-fluid {
-     padding: 60px 50px;
-}
- .bg-grey {
-     background-color: #f6f6f6;
-}
- .logo-small {
-     color: #f4511e;
-     font-size: 50px;
-}
-.carousel-control .glyphicon-chevron-left {
-    position: center;
-    top: 50%;
-    z-index: 5;
-    display: inline-block;
-    margin-top: -15px;
-    color: white;
-    font-size: 25px;
-}
-
-.carousel-control .glyphicon-chevron-right {
-    position: center;
-    top: 50%;
-    z-index: 5;
-    display: inline-block;
-    margin-top: -15px;
-    color: white;
-    font-size: 25px;
-}
-
- .logo {
-     color: #f4511e;
-     font-size: 200px;
-}
- .navbar {
-     margin-bottom: 0;
-     background-color: #f4511e;
-     z-index: 9999;
-     border: 0;
-     font-size: 12px !important;
-     line-height: 1.42857143 !important;
-     letter-spacing: 4px;
-     border-radius: 0;
-     font-family: Montserrat, sans-serif;
-}
- .navbar li a, .navbar .navbar-brand {
-     color: #fff !important;
-}
- .navbar-nav li a:hover, .navbar-nav li.active a {
-     color: #f4511e !important;
-     background-color: #fff !important;
-}
- .navbar-default .navbar-toggle {
-     border-color: transparent;
-     color: #fff !important;
-}
- .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
-     color: #555;
-     background-color: #cd3100;
-}
- footer .glyphicon {
-     font-size: 20px;
-     margin-bottom: 20px;
-     color: #f4511e;
-}
- .slideanim {
-    visibility:hidden;
-}
- .slide {
-     animation-name: slide;
-     -webkit-animation-name: slide;
-     animation-duration: 1s;
-     -webkit-animation-duration: 1s;
-     visibility: visible;
-}
- .form-control{
-     display: unset;
-}
- navbar-nav>li>a {
-     background-color: #f4511e;
-}
- @keyframes slide {
-     0% {
-         opacity: 0;
-         transform: translateY(70%);
-    }
-     100% {
-         opacity: 1;
-         transform: translateY(0%);
-    }
-}
- @-webkit-keyframes slide {
-     0% {
-         opacity: 0;
-         -webkit-transform: translateY(70%);
-    }
-     100% {
-         opacity: 1;
-         -webkit-transform: translateY(0%);
-    }
-}
- @media screen and (max-width: 768px) {
-     .col-sm-4 {
-         text-align: center;
-         margin: 25px 0;
-    }
-     .btn-lg {
-         width: 100%;
-         margin-bottom: 35px;
-    }
-}
- @media screen and (max-width: 480px) {
-     .logo {
-         font-size: 150px;
-    }
-}
- .about-section {
-     padding: 4em 0;
-}
- .site-title {
-     padding: 2em 0;
-}
- .site-title h3 {
-     font-size: 3.5em;
-     color: white;
-     font-family: Montserrat, sans-serif;
-     font-weight: 700;
-}
- .site-title p {
-     font-size: 1.1em;
-     color: white;
-     line-height: 1.8em;
-     margin-top: 0.5em;
-}
- .about-inner-column h4 {
-     font-size: 2.5em;
-     color: #FFD001;
-     font-family: Montserrat, sans-serif;
-}
- .about-inner-column p {
-     font-size: 1.1em;
-     color: #333333;
-     line-height: 1.8em;
-     margin: 1em 0 0;
-}
- .about-inner-column ul li a {
-     color: #333333;
-     font-size: 1.1em;
-     padding-left: 2em;
-}
- .about-right img {
-     width: 100%;
-}
- table {
-     border-collapse: collapse;
-     border-spacing: 0;
-     width: 100%;
-     border: 2px solid #ddd;
-}
- th, td {
-     text-align: left;
-     padding: 16px;
-}
- tr:nth-child(even){
-    background-color: #f2f2f2
-}
- i{
-     color: #26b2ad;
-     font-size: 2em !important;
-}
- .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
-     color: #555;
-     cursor: default;
-     background-color: #fff;
-     border: 3px solid #ddd;
-     border-bottom-color: transparent;
-}
- .nav-tabs>li>a {
-     margin-right: 2px;
-     line-height: 1.42857143;
-     border: 1px solid transparent;
-     border-radius: 4px 4px 0 0;
-     background-color: #d7dfe6;
-}
-/* Extra styles for the cancel button */
- .cancelbtn {
-     width: auto;
-     padding: 10px 18px;
-     background-color: #f44336;
-}
-/* Center the image and position the close button */
- .imgcontainer {
-     text-align: center;
-     margin: 24px 0 12px 0;
-     position: relative;
-}
- img.avatar {
-     width: 40%;
-     border-radius: 50%;
-}
-/*.container {
-     padding: 16px;
-}
-*/
- span.psw {
-     float: right;
-     padding-top: 16px;
-}
-/* The Modal (background) */
- .modal {
-     display: none;
-    /* Hidden by default */
-     position: fixed;
-    /* Stay in place */
-     z-index: 1;
-    /* Sit on top */
-     left: 0;
-     top: 0;
-     width: 100%;
-    /* Full width */
-     height: 100%;
-    /* Full height */
-     overflow: auto;
-    /* Enable scroll if needed */
-     background-color: rgb(0,0,0);
-    /* Fallback color */
-     background-color: rgba(0,0,0,0.4);
-    /* Black w/ opacity */
-     padding-top: 60px;
-}
- .modal2 {
-     display: none;
-    /* Hidden by default */
-     position: fixed;
-    /* Stay in place */
-     z-index: 1;
-    /* Sit on top */
-     left: 0;
-     top: 0;
-     width: 50%;
-    /* Full width */
-     height: 50%;
-    /* Full height */
-     overflow: auto;
-    /* Enable scroll if needed */
-     background-color: rgb(0,0,0);
-    /* Fallback color */
-     background-color: rgba(0,0,0,0.4);
-    /* Black w/ opacity */
-     padding-top: 60px;
-}
-/* Modal Content/Box */
- .modal-content {
-     background-color: #fefefe;
-     margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-     border: 1px solid #888;
-     width: 80%;
-    /* Could be more or less, depending on screen size */
-}
- .modal-content2 {
-     background-color: #fefefe;
-     margin: 5% auto 15% auto;
-    /* 5% from the top, 15% from the bottom and centered */
-     border: 1px solid #888;
-     width: 30%;
-    /* Could be more or less, depending on screen size */
-}
-/* The Close Button (x) */
- .close {
-     position: absolute;
-     right: 25px;
-     top: 0;
-     color: #000;
-     font-size: 35px;
-     font-weight: bold;
-}
- .close:hover, .close:focus {
-     color: red;
-     cursor: pointer;
-}
-/* Add Zoom Animation */
- .animate {
-     -webkit-animation: animatezoom 0.6s;
-     animation: animatezoom 0.6s 
-}
- @-webkit-keyframes animatezoom {
-     from {
-        -webkit-transform: scale(0)
-    }
-     to {
-        -webkit-transform: scale(1)
-    }
-}
- @keyframes animatezoom {
-     from {
-        transform: scale(0)
-    }
-     to {
-        transform: scale(1)
-    }
-}
-/* Change styles for span and cancel button on extra small screens */
- @media screen and (max-width: 300px) {
-     span.psw {
-         display: block;
-         float: none;
-    }
-     .cancelbtn {
-         width: 100%;
-    }
-}
- input[type=checkbox] {
-     margin: 7px 0 0;
-     margin-top: 1px \9;
-     line-height: normal;
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    margin-left: 0.5em;
-    width: 350px;
-}
-
-</style>
+   <link rel="stylesheet" type="text/css" href="{{ url('/css/property.css') }}">
 <body>
-    @extends('main') @section('navbar')
-    </ul>
-    </div>
-
-    </div>
-    </nav>
-    @endsection
+    @include('main') 
+   
     <div class="row">
         <br/>
 
         <div class="col-md-12 container-fluid" style="margin-top: -30px;">
-            <ul class="nav nav-tabs" style="margin-top: 70px;">
-                <li class="active"><a href="#sltablediv" style="color: #555;">Properties Forms Data</a></li>
-            </ul>
+          
             <div class="tab-content">
                 <div id="sltablediv" class="tab-pane fade in active">
                     <h1 align="center" {{-- style="margin-top: 70px;" --}}>Properties Forms Data</h1>
@@ -375,14 +78,13 @@
                                 <th>TYPE</th>
                                 <th>TOWN</th>
                                 <th>AREA</th>
-                                <th>PRICE</th>
-                                <th>SQUARE METERS</th>
-                                <th>DATE_SUBMITTED</th>
-                                <th>CUSTOMER_ID</th>
-                                <th>PICTURES</th>
+                                <th>DATE SUBMITTED</th>
+                                <th>CUSTOMER ID</th>
+                                
+                                <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-picture-o ic" aria-hidden="true"></i></th>
 
-                                <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
-                                <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="color: red;"></i></th>
+                                <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o ic" aria-hidden="true"></i></th>
+                                <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-trash-o ic" aria-hidden="true" style="color: red;"></i></th>
                             </tr>
                         </thead>
 
@@ -394,123 +96,224 @@
                                 <td>{{$row->TYPE}}</td>
                                 <td>{{$row->TOWN}}</td>
                                 <td>{{$row->AREA}}</td>
-                                <td>{{$row->PRICE}}</td>
-                                <td>{{$row->SQUARE_METERS}}</td>
                                 <td>{{$row->DATE_SUBMITTED}}</td>
                                  <td>{{$row->CUSTOMER_ID}}</td>
                               
                                   <td style="text-align: center;">
-                                    <i class="fas fa-image" 
+                                    <i class="fa fa-picture-o ic" 
                                        aria-hidden="true" 
                                        style="cursor: pointer;" 
                                        onclick="document.getElementById('id04{{$row->PROPERTY_ID}}').style.display='block'">
                                     </i>
                                 </td>
- 
-                                <td style="text-align: center;">
-                                    <i class="fa fa-pencil-square-o" 
+                              
+                                <td style="text-align: center;"> 
+                                    <i id ="editpro" class="fa fa-pencil-square-o editpro ic" 
+                                       data-proid="{{$row->PROPERTY_ID}}" 
+                                       data-available_for="{{$row->AVAILABLE_FOR}}" 
+                                       data-type="{{$row->TYPE}}" 
+                                       data-subtype="{{$row->SUBTYPE}}"
+                                       data-town="{{$row->TOWN}}"
+                                       data-area="{{$row->AREA}}"
+                                       data-price="{{$row->PRICE}}"
+                                       data-squaremet="{{$row->SQUARE_METERS}}"
+                                       data-floors="{{$row->FLOORS}}"
+                                       data-rooms="{{$row->ROOMS}}"
+                                       data-furnished="{{$row->FURNISHED}}"
+                                       data-pool="{{$row->POOL}}"
+                                       data-date_submited="{{$row->DATE_SUBMITTED}}" 
+                                       data-customer_id="{{$row->CUSTOMER_ID}}"
+                                       aria-hidden="true" 
+                                       style="cursor: pointer;">
+                                    </i>
+                                </td>
+                                <!-- <td style="text-align: center;"> 
+                                    <i class="fa fa-pencil-square-o ic" 
                                        aria-hidden="true" 
                                        style="cursor: pointer;" 
                                        onclick="document.getElementById('id01{{$row->PROPERTY_ID}}').style.display='block'">
                                     </i>
-                                </td>
+                                </td>-->
 
+
+                                <!--
                                 <td style="text-align: center;">
-                                    <i class="fa fa-trash-o" 
+                                    <i class="fa fa-trash-o ic" 
                                        aria-hidden="true" 
                                        style="cursor: pointer; 
                                        color: red;" 
                                        onclick="document.getElementById('id02{{$row->PROPERTY_ID}}').style.display='block'">
                                        </i>
                                 </td>
+
+                              --->
+                              <td style="text-align: center;">
+                                <i class="fa fa-trash-o delPro ic" 
+                                  id="delPro"
+
+                                  data-proid="{{$row->PROPERTY_ID}}" 
+                                  data-available_for="{{$row->AVAILABLE_FOR}}" 
+                                  data-type="{{$row->TYPE}}" 
+                                  data-subtype="{{$row->SUBTYPE}}"
+                                  data-town="{{$row->TOWN}}"
+                                  data-area="{{$row->AREA}}"
+                                  data-price="{{$row->PRICE}}"
+                                  data-squaremet="{{$row->SQUARE_METERS}}"
+                                  data-floors="{{$row->FLOORS}}"
+                                  data-rooms="{{$row->ROOMS}}"
+                                  data-furnished="{{$row->FURNISHED}}"
+                                  data-pool="{{$row->POOL}}"
+                                  data-date_submited="{{$row->DATE_SUBMITTED}}" 
+                                  data-customer_id="{{$row->CUSTOMER_ID}}" 
+                                  aria-hidden="true"
+                                  style="cursor: pointer; color: red;"
+                                  ></i></td>
+
+              
                             </tr>
 
 
-                            <div id="id04{{$row->PROPERTY_ID}}" class="modal slmodal">
-                                <div class="modal-content animate" name="slmodal">
+                            <div id="id04{{$row->PROPERTY_ID}}" 
+                                 class="modal slmodal">
+                                <div class="modal-content animate" 
+                                     name="slmodal">
+ 
 
-                                    <form method="post" 
-                                          action="{{url('PropertyImage')}}" 
-                                          role="form" 
-                                          id="sldata"
-                                        >
+                                    <h3>Image Gallery</h3>
 
-                                    <div id="about" class="container-fluid" style="width: 1700px; margin-right: auto; margin-left: 320px;">
-                                      <div class="row">
-                                        <div class="col-sm-6 carousel slide" id="myCarousel" data-ride="carousel" style="bottom: 10px;">
-                                                <!-- Indicators -->
-                                                <ol class="carousel-indicators">
-                                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="3"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="4"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="5"></li>
-                                                </ol>
+                                    <form action="image-gallery" 
+                                          class="form-image-upload" 
+                                          method="POST" 
+                                          enctype="multipart/form-data">
 
-                                                <!-- Wrapper for slides -->
-                                                <div class="carousel-inner" >
-
-                                                  <div class="item active" >
+                                   {!! csrf_field() !!}
 
 
-                                                    <img src="images/r17.jpg" alt="Los Angeles" style=" width: 100%">
-                                                    <div class="carousel-caption">
-                                                      <h3>Limassol</h3>
-                                                      <p>In Limassol is always so much fun!</p>
-                                                    </div>
-                                                  </div>
+                                    @if (count($errors) > 0)
 
-                                                  <div class="item">
-                                                    <img src="images/r13.jpg" alt="Chicago" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                    
-                                                      <p>Thank you, Limassol!</p>
-                                                    </div>
-                                                  </div>
-                                                
-                                                  <div class="item">
-                                                    <img src="images/r14.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                     
-                                                    </div>
-                                                  </div>
+                                        <div class="alert alert-danger">
 
-                                                  <div class="item">
-                                                    <img src="images/r15.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                      
-                                                    </div>
-                                                  </div>
+                                            <strong>Whoops!</strong> There were some problems with your input.<br><br>
 
-                                                  <div class="item">
-                                                    <img src="images/r16.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                      
-                                                    </div>
-                                                  </div>
+                                            <ul>
 
-                                                  <div class="item">
-                                                    <img src="images/r3.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                      
-                                                    </div>
-                                                  </div>
-                                              
-                                                </div>
+                                                @foreach ($errors->all() as $error)
 
-                                                <!-- Left and right controls -->
-                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                  <span class="glyphicon glyphicon-chevron-left"></span>
-                                                  <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                  <span class="glyphicon glyphicon-chevron-right"></span>
-                                                  <span class="sr-only">Next</span>
-                                                </a>   
-                                         </div>
-                                      </div>
+                                                    <li>{{ $error }}</li>
+
+                                                @endforeach
+
+                                            </ul>
+
+                                        </div>
+
+                                    @endif
+
+
+                                    @if ($message = Session::get('success'))
+
+                                    <div class="alert alert-success alert-block">
+
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+
+                                            <strong>{{ $message }}</strong>
+
                                     </div>
+
+                                    @endif
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-5">
+
+                                            <strong>Title:</strong>
+
+                                            <input type="text" 
+                                                   name="title" 
+                                                   class="form-control" 
+                                                   placeholder="Title"
+                                                   value="{{ $row->PROPERTY_ID }}"
+                                                   disabled>
+
+                                             <input type="text" 
+                                             name="title" 
+
+                                             
+                                             class="form-control hidden" 
+                                             placeholder="Title"
+                                             value="{{ $row->PROPERTY_ID }}"
+                                             >
+
+
+                                        </div>
+
+                                        <div class="col-md-5">
+
+                                            <strong>Image:</strong>
+
+                                            <input type="file" name="image" class="form-control">
+
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                            <br/>
+
+                                            <button type="submit" class="btn btn-success">Upload</button>
+
+                                        </div>
+
+                                </div>
+
+
+
+                                    <div class="row">
+
+                                    <div class='list-group gallery'>
+
+
+                                            @if($image_gallery->count())
+
+                                                @foreach($image_gallery as $image)
+                                                @if( $image->title  == $row->PROPERTY_ID )
+                                                <div class='col-sm-4 col-xs-6 col-md-3 col-lg-3'>
+
+                                                    <a class="thumbnail fancybox" rel="ligthbox" href="{{ $image->image }}">
+
+                                                        <img class="img-responsive" alt="" src="{{ $image->image }}" />
+
+                                                        <div class='text-center'>
+
+                                                            <small class='text-muted'>{{ $image->title }}</small>
+
+                                                        </div> <!-- text-center / end -->
+
+                                                    </a>
+
+                                                    <form action="image-gallerydel" method="post">
+                                                      {!! csrf_field() !!}
+                                                    <input class="hidden id" name="id" id="id" value="{{ $image->id }}">
+
+                                                    
+
+                                                    <button type="submit" class="close-icon btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+
+                                                    </form>
+
+                                                </div> <!-- col-6 / end -->
+                                                @endif
+                                                @endforeach
+
+                                            @endif
+
+
+                                        </div> <!-- list-group / end -->
+
+                                    </div> <!-- row / end -->
+
+
+
                                     <div class="container-fluid" style="background-color:#f1f1f1; padding: 0px;">
                                                 <div class="" 
                                                      style="float: center;">
@@ -522,26 +325,38 @@
                                                 </div>
 
                                                
-                                    </div>  
-                                     </form>
+                                    </div> 
+                                    </form>
                                      
                                  </div>    
                             </div>   
+<!--------- END OF IMAGE GALLERY---->
 
 
-
-
-                            <div id="id01{{$row->PROPERTY_ID}}" class="modal slmodal">
+                            <!-- <div id="id01{{$row->PROPERTY_ID}}" class="modal slmodal"> 
                                 <div class="modal-content animate" name="slmodal">
 
                                     <form method="post" 
-                                          action="{{url('PropertyUpdate')}}" 
+                                          action="PropertyUpdate" 
                                           role="form" 
                                           id="sldata"
                                         >
+                                        -->
+
+            <div ID="ProUpdate" class="modal fade" role="dialog">
+                             <div class="modal-dialog" style="width: 1500px;">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                                        <h3 class="text-center">Update Property's Information</h3>
+                                    </div>
+                                    <div class="modal-body">    
+                                    <br />
+                                    <div class="hidden"><input type="text" name="ID8" id="ID8"></div>
+                                    <form class="form-horizontal" method="post" action="PropertyUpdate" role="form" >
 
                                         {{csrf_field()}}
-                                        <div class="container-fluid" style="padding: 16px;">
+                                        <!-- <div class="container-fluid" style="padding: 16px;"> -->
 
                                             <div class="row">
                                                 <div class="col-sm-3">
@@ -549,9 +364,9 @@
                                                         <label for="form_name">Property ID: </label>
                                                         <input onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
-                                                               id="PROPERTY_ID" 
+                                                               id="PROPERTY_ID0" 
                                                                type="text" 
-                                                               name="PROPERTY_ID" 
+                                                               name="PROPERTY_ID0" 
                                                                class="form-control" 
                                                                placeholder="Please enter PROPERTY_ID *" 
                                                                required="required" 
@@ -563,23 +378,25 @@
                                                 </div>
 
                                                 <div class="col-sm-3">
+                                                  <div class="form-group">
                                                         <label class=" control-label" >Available For: </label>
 
-                                                        <select class ="form-control" id="AVAILABLE_FOR" name="AVAILABLE_FOR">
-
-                                               
+                                                        <select class ="form-control" id="AVAILABLE_FOR1" name="AVAILABLE_FOR1">        
                                                             <option {{ $row->AVAILABLE_FOR == 'For Sale' ? 'selected':'' }}>For Sale</option>
                                                             <option {{ $row->AVAILABLE_FOR == 'For Rent' ? 'selected':'' }}>For Rent</option>
+
                                                         </select>
                                                         <div class="help-block with-errors"></div> 
+                                                  </div>
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <div class="col-sm-3">
+                                                  <div class="form-group">
                                                     <label class=" control-label" >Property's Type: </label>
 
-                                                    <select class ="form-control" id="TYPE" name="TYPE">
+                                                    <select class ="form-control" id="TYPE1" name="TYPE1">
 
                                              
                                                         <option {{ $row->TYPE == 'Apartment' ? 'selected':'' }}>Apartment</option>
@@ -593,13 +410,14 @@
                                                     </select>
                                                   
                                                     <div class="help-block with-errors"></div> 
-                                    
                                                 </div>
+                                              </div>
 
                                                 <div class="col-sm-3">
+                                                  <div class="form-group">
                                                     <label class=" control-label" >Subtype's Type: </label>
 
-                                                    <select class ="form-control" id="SUBTYPE" name="SUBTYPE">
+                                                    <select class ="form-control" id="SUBTYPE1" name="SUBTYPE1">
 
                                                         
                                                         <option {{ $row->SUBTYPE == 'Residential' ? 'selected':'' }}>Residential</option>
@@ -608,16 +426,16 @@
                                                         
                                                     </select>
                                                     <div class="help-block with-errors"></div> 
+                                                  </div>
                                                 </div>      
                                             </div>
 
                                             <div class="row">
-
-
                                                 <div class="col-sm-3">
+                                                    <div class="form-group">
                                                     <label class=" control-label" >Town: </label>
 
-                                                    <select class ="form-control" id="TOWN" name="TOWN">
+                                                    <select class ="form-control" id="TOWN1" name="TOWN1">
 
                                                      
                                                         <option {{ $row->TOWN == 'Nicosia' ? 'selected':'' }}>Nicosia</option>
@@ -628,34 +446,42 @@
                                                     </select>
                                                     <div class="help-block with-errors"></div> 
                                                 </div> 
+                                              </div>
 
                                                  <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="form_name">Area: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
+                                                        <input maxlength="20" 
+                                                               onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
-                                                               id="AREA" 
-                                                               type="number" 
-                                                               name="AREA" 
+                                                               id="AREA1" 
+                                                               type="text" 
+                                                               name="AREA1" 
                                                                class="form-control" 
-                                                               placeholder="Please enter area."
+                                                               placeholder="Please enter area*"
+                                                               required="required" 
+                                                               required oninvalid="setCustomValidity('Please enter area')" 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"     
+                                                               onkeyup="lettersOnly(this)" 
+                                                               data-error="Property ID is required." 
                                                                value="{{$row->AREA}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
+                        
 
                                              <div class="row">
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Price: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)" 
-                                                               id="PRICE" 
-                                                               type="number" 
-                                                               name="PRICE" 
+                                                        <input pattern="\d*" maxlength="8" 
+                                                               onkeyup="lettersOnly(this)" 
+                                                               id="PRICE1" 
+                                                               type="text" 
+                                                               name="PRICE1" 
                                                                class="form-control" 
-                                                                required="required" 
+                                                               required="required" 
                                                                required oninvalid="setCustomValidity('Please enter price')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
                                                                onkeypress="return isNumberKey(event)" 
@@ -667,14 +493,14 @@
                                             </div>
 
                                              <div class="row">
-                                     			<div class="col-sm-5">
+                                                <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Square Meters: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)" 
-                                                               id="SQUARE_METERS" 
-                                                               type="number" 
-                                                               name="SQUARE_METERS" 
+                                                        <input pattern="\d*" maxlength="8"  
+                                                               onkeyup="lettersOnly(this)" 
+                                                               id="SQUARE_METERS1" 
+                                                               type="text" 
+                                                               name="SQUARE_METERS1" 
                                                                class="form-control" 
                                                                placeholder="Please enter square meters of property." 
                                                                required="required" 
@@ -692,18 +518,17 @@
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Floors: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)"
-                                                               id="FLOORS" 
-                                                               type="number" 
-                                                               name="FLOORS" 
+                                                        <input pattern="\d*" maxlength="8" 
+                                                               onkeyup="lettersOnly(this)"
+                                                               id="FLOORS1" 
+                                                               type="text" 
+                                                               name="FLOORS1" 
                                                                class="form-control" 
                                                                placeholder="Please enter floors." 
                                                                required="required" 
                                                                required oninvalid="setCustomValidity('Please enter the square meters ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
                                                                onkeypress="return isNumberKey(event)" 
-                                                               onkeyup="lettersOnly(this)"  
                                                                value="{{$row->FLOORS}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
@@ -711,157 +536,103 @@
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Rooms: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" " 
-                                                               onkeyup="alphaOnly(this)"
-                                                               id="ROOMS" 
-                                                               type="number" 
-                                                               name="ROOMS" 
+                                                        <input pattern="\d*" maxlength="8" 
+                                                               onkeyup="lettersOnly(this)"
+                                                               id="ROOMS1" 
+                                                               type="text" 
+                                                               name="ROOMS1" 
                                                                class="form-control" 
                                                                placeholder="Please enter rooms." 
                                                                required="required" 
                                                                required oninvalid="setCustomValidity('Please enter the square meters ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
                                                                onkeypress="return isNumberKey(event)" 
-                                                               onkeyup="lettersOnly(this)"  
                                                                value="{{$row->ROOMS}}">
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                                 <div class="row">
-
-
                                                     <div class="col-sm-5">
+                                                      <div class="form-group">
                                                         <label class=" control-label" >Furnished: </label>
 
-                                                        <select class ="form-control" id="FURNISHED" name="FURNISHED">
+                                                        <select class ="form-control" id="FURNISHED1" name="FURNISHED1">
                                                             <option {{ $row->FURNISHED == 'Yes' ? 'selected':'' }}>Yes</option>
                                                             <option {{ $row->FURNISHED == 'No' ? 'selected':'' }}>No</option>
                                                         </select>
                                                         <div class="help-block with-errors"></div> 
                                                     </div> 
-
-                                                  	 <div class="col-sm-5">
+                                                    </div>
+                                                     <div class="col-sm-5">
+                                                        <div class="form-group">
                                                         <label class=" control-label" >Pool:</label>
 
-                                                        <select class ="form-control" id="POOL" name="POOL">
+                                                        <select class ="form-control" id="POOL1" name="POOL1">
                                                             <option {{ $row->POOL == 'Yes' ? 'selected':'' }}>Yes</option>
                                                             <option {{ $row->POOL == 'No' ? 'selected':'' }}>No</option>
                                                         </select>
                                                         <div class="help-block with-errors"></div> 
-                                                    </div> 
-
-                                              	</div>
+                                                      </div> 
+                                                    </div>
+                                                </div>
                                             <div class="row">
-
                                                 <div class="col-sm-5">
                                                     <div class="form-group">
                                                         <label for="form_name">Customer ID: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup="alphaOnly(this)" 
-                                                               id="CUSTOMER_ID" 
+                                                        <input onkeypress="return isNumberKey(event)" 
+                                                               onkeyup ="lettersOnly(this)"  
+                                                               id="CUSTOMER_ID1" 
                                                                type="text" 
-                                                               name="CUSTOMER_ID" 
+                                                               name="CUSTOMER_ID1" 
                                                                class="form-control" 
                                                                placeholder="Please enter customer ID *" 
                                                                required="required" 
                                                                data-error="Customer ID is required." 
                                                                value="{{$row->CUSTOMER_ID}}">
                                                         <div class="help-block with-errors"></div>
-                                                    </div>
+
+                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
 
-                                  				<div class="col-sm-5">
-                                                    <div class="form-group">
-                                                        <label for="form_message">Pictures: </label>                         
-                                                        	
-                                                        	 <div id="about" class="container-fluid" style="width: 1000px; margin-right: auto; margin-left: 20px;">
-                                    <div class="row">
-                                        <div class="col-sm-6 carousel slide" id="myCarousel" data-ride="carousel" style="bottom: 10px;">
-                                                <!-- Indicators -->
-                                                <ol class="carousel-indicators">
-                                                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="3"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="4"></li>
-                                                  <li data-target="#myCarousel" data-slide-to="5"></li>
-                                                </ol>
+                                      <!-- </div> -->
 
-                                                <!-- Wrapper for slides -->
-                                                <div class="carousel-inner" >
+                                       <div class="row">
+                                            <div class="col-sm-5">
+                                                <div class="form-group">
+                                                        <label for="form_name">Date Submitted: </label>
+                                                        <input id="DATE_SUBMITTED1" 
+                                                               type="DATE" 
+                                                               name="DATE_SUBMITTED1" 
+                                                               class="form-control" 
+                                                               placeholder="Please enter date *" 
+                                                               required="required" 
+                                                               data-error="Date submitted field is required.">
 
-                                                  <div class="item active" >
-
-
-                                                    <img src="images/r17.jpg" alt="Los Angeles" style=" width: 100%">
-                                                    <div class="carousel-caption">
-                                 
-                                                    </div>
-                                                  </div>
-
-                                                  <div class="item">
-                                                    <img src="images/r13.jpg" alt="Chicago" style="width:100%;">
-                                                    <div class="carousel-caption">
+                                                        <div class="help-block with-errors"></div>
                                                     
-                                              
-                                                    </div>
-                                                  </div>
-                                                
-                                                  <div class="item">
-                                                    <img src="images/r14.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                     
-                                                    </div>
-                                                  </div>
-
-                                                  <div class="item">
-                                                    <img src="images/r15.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                      
-                                                    </div>
-                                                  </div>
-
-                                                  <div class="item">
-                                                    <img src="images/r16.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                      
-                                                    </div>
-                                                  </div>
-
-                                                  <div class="item">
-                                                    <img src="images/r3.jpg" alt="New York" style="width:100%;">
-                                                    <div class="carousel-caption">
-                                                      
-                                                    </div>
-                                                  </div>
-                                              
                                                 </div>
-
-                                                <!-- Left and right controls -->
-                                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                                                  <span class="glyphicon glyphicon-chevron-left"></span>
-                                                  <span class="sr-only">Previous</span>
-                                                </a>
-                                                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                                                  <span class="glyphicon glyphicon-chevron-right"></span>
-                                                  <span class="sr-only">Next</span>
-                                                </a>   
-                                         </div>
-                                      </div>
-                                    </div>
-
-                                                            <div class="help-block with-errors"></div>
-                                                    </div>
-                                                </div>
+                                            </div>     
+                                        </div>
+                                                              
+                                            <div class="modal-footer">
+                                                <input id="editsubmit" type="submit" class="btn btn-primary editsubmit" align="center" value="Save">
+                                                <input name="PROPERTY_ID1" id="PROPERTY_ID1" class="hidden ID">
+                                            </div>
+                                    </form>
                                 </div>
-                                <div class="row">
-
- 												<div class="col-sm-5">
+                            </div>
+                        </div>
+                    </div>
+                                                    <!-- </div> 
+                                                </div>
+                                            </div>
+                                  
+                                            <div class="row">
+                                                <div class="col-sm-5">
                                                     <div class="form-group">
-                                                        <label for="form_message">Date Submitted</label>
+                                                        <label for="form_message">Date Submitted:</label>
                                                         <input id="DATE_SUBMITTED" 
                                                                type="DATE" 
                                                                name="DATE_SUBMITTED" 
@@ -871,8 +642,8 @@
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
-                				            </div>
-                                        </div>    
+                                            </div>
+                  </div>    
                                         <div class="container col-md-12" 
                                              style="background-color:#f1f1f1; 
                                              padding: 16px;">
@@ -903,20 +674,21 @@
                                             </div>
 
                                         </div>
+                                    </div>
                                     </form>
                                 </div>
                             </div>
+                          -->
 
-
-
-                            <div id="id02{{$row->PROPERTY_ID}}" 
+<!--
+                          <div id="id02{{$row->PROPERTY_ID}}" 
                                  class="modal">
                                 <div class="modal-content animate modal-sm">
 
                                     <form method="post" 
-                                    	  action="{{url('PropertyDestroy')}}" 
-                                    	  role="form" 
-                                    	  id="sldata">
+                                          action="{{url('PropertyDestroy')}}" 
+                                          role="form" 
+                                          id="sldata">
 
                                         {{csrf_field()}}
                                              <div class="container-fluid" style="text-align: center; padding: 0;">
@@ -950,39 +722,127 @@
                                     </form>
                                 </div>
                             </div>
-                               @endforeach  
+-->
 
+
+
+     <!--
+    <div ID="id02{{$row->PROPERTY_ID}}" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content">
+
+                <div class="modal-header" style="height: 50px;">
+
+                    <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                </div>
+                <h3 class="text-center">Do you want to delete property's form?</h3>
+                <div class="modal-body">
+                <br />
+                <div class="hidden"><input type="text" name="ID3" id="ID8"></div>
+
+
+                    <form class="form-horizontal" 
+                          role="form" 
+                          method="post" 
+                          action="PropertyDestroy">
+                      {{csrf_field()}}
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="ID0">Property ID:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="PROPERTY_ID" disabled>
+                                </div>
+                            </div>
+                        </div>
+                      <br/>
+
+                     <div class="row">
+                      
+                          <div class="modal-footer">
+                              <input type="submit" class="btn btn-primary delete"align="center" value="Delete">
+                              <input name="PROPERTY_ID" id="PROPERTY_ID" class="hidden ID">
+                          </div>
+                      
+                      </div>
+
+                    </form>                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    -->
+
+       <div ID="ProDestroy" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content">
+                <div class="modal-header" style="height: 50px;">
+                    <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                </div>
+                 <h3 class="text-center">Do you want to delete property's form?</h3>
+                <div class="modal-body">
+                    <br />
+                    <div class="hidden"><input type="text" name="ID3" id="ID8"></div>
+                    <form class="form-horizontal" role="form" method="post" action="PropertyDestroy">
+
+                      {{csrf_field()}}
+                      <div class="row">
+                          <div class="form-group">
+                              <label class="control-label col-sm-2" for="ID0">Property ID:</label>
+                              <div class="col-sm-6">
+                                  <input type="text" class="form-control" id="PROPERTY_ID2" disabled>
+                              </div>
+                          </div>
+                      </div>
+                      <br/>
+                       <div class="row">
+                          <div class="form-group">
+                              <label class="control-label col-sm-2" for="ID0">Customer ID:</label>
+                              <div class="col-sm-6">
+                                  <input type="text" class="form-control" id="CUSTOMER_ID2" disabled>
+                              </div>
+                          </div>
+                      </div>
                               
-
-  						<thead>
+                      <div class="row">
+                        <!-- <div class="form-group"> -->
+                          <div class="modal-footer">
+                              <input type="submit" class="btn btn-primary delete"align="center" value="Delete">
+                              <input name="PROPERTY_ID21" id="PROPERTY_ID21" class="hidden ID">
+                          </div>
+                        </div>
+                    </form>                  
+                </div>
+            </div>
+        </div>
+    </div>              
+                               @endforeach  
+                        <thead>
                             <tr>
-                                <th  style="text-align: center;">
-                                	<i class="fa fa-plus-circle" 
-                                	aria-hidden="true" 
-                                	style="cursor: pointer; color: orange;" 
-                                	onclick="document.getElementById('id03{{$row->PROPERTY_ID}}').style.display='block'">
-                                	</i>
-                                </th>
+                                <td style="text-align: center;"><i id="addpro" class="fa fa-plus-circle addpro ic" aria-hidden="true" style="cursor: pointer; color: orange;"></i></td>
                             </tr>
                         </thead>
 
-                        <div id="id03{{$row->PROPERTY_ID}}" 
-
-                        	 class="modal slmodal">
-                              <div class="modal-content animate" name="slmodal">
-
-                                    <form method="post" 
-                                    	  action="{{url('PropertyAdd')}}" 
-                                    	  role="form" 
-                                    	  id="sldata">
+                        <div ID="ProAdd" class="modal fade" role="dialog">
+                         <div class="modal-dialog" style="width: 1500px;">
+                             <div class="modal-content">
+                                <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" style="margin-top: 10px;">&times;</button>
+                             <h3 class="text-center">Add Property's Information</h3>
+                        </div>
+                    <div class="modal-body">
+                    <br />
+                    <div class="hidden"><input type="text" name="ID8" id="ID8"></div>
+                                    <form method="post" action="PropertyAdd" role="form" id="sldata">
 
                                        {{csrf_field()}}
                                        <div class="container" style="padding: 16px;">
                                             <div class="row">
-                                            	  <div class="col-sm-3">
+                                                  <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label for="form_lastname">Property ID: </label>
-                                                        <input onkeypress="return 
+                                                        <input 
                                                                id="PROPERTY_ID" 
                                                                type="text" 
                                                                name="PROPERTY_ID" 
@@ -1065,50 +925,53 @@
                                                  <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label for="form_name">Area: </label>
-                                                        <input onkeypress="return inputAlphabet(event)" 
+                                                        <input maxlength="20" 
+                                                               onkeypress="return inputAlphabet(event)" 
                                                                onkeyup="alphaOnly(this)" 
                                                                id="AREA" 
                                                                type="text" 
                                                                name="AREA" 
                                                                class="form-control" 
                                                                placeholder="Please enter area *"
+                                                               required="required"
+                                                               required oninvalid="setCustomValidity('Please enter area')" 
+                                                               data-error="Area is required." 
+                                                               onchange="try{setCustomValidity('')}catch(e){}"
                                                             >
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
 
-
                                             <div class="row">
                                             <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Price: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup ="alphaOnly(this)"
+                                                        <input pattern="\d*" maxlength="8" 
+                                                               onkeyup ="lettersOnly(this)"
                                                                id="PRICE" 
-                                                        	   type="number" 
-                                                        	   name="PRICE" 
-                                                        	   class="form-control" 
-                                                        	   placeholder="Please enter price *" 
-                                                        	  required="required" 
+                                                               type="text" 
+                                                               name="PRICE" 
+                                                               class="form-control" 
+                                                               placeholder="Please enter price *" 
+                                                              required="required" 
                                                                required oninvalid="setCustomValidity('Please enter price ')" 
                                                                onchange="try{setCustomValidity('')}catch(e){}"
                                                                onkeypress="return isNumberKey(event)" 
                                                                onkeyup="lettersOnly(this)"  >
 
-                                                    	<div class="help-block with-errors"></div>
-
-                                            		<div>  
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>  
+                                               </div>
                                             </div>
-											</div>
                                             <div class="row">
-                                            <div class="col-sm-6">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Square Meters: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup ="alphaOnly(this)"
+                                                        <input pattern="\d*" maxlength="8"  
+                                                               onkeyup ="lettersOnly(this)"
                                                                id="SQUARE_METERS" 
-                                                               type="number" 
+                                                               type="text" 
                                                                name="SQUARE_METERS" 
                                                                class="form-control" 
                                                                placeholder="Please enter square meters *"  
@@ -1125,10 +988,10 @@
                                                  <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Floors: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup ="alphaOnly(this)"
+                                                        <input pattern="\d*" maxlength="8"  
+                                                               onkeyup ="lettersOnly(this)"
                                                                id="FLOORS" 
-                                                               type="number" 
+                                                               type="text" 
                                                                name="FLOORS" 
                                                                class="form-control" 
                                                                placeholder="Please enter the number of floors" 
@@ -1140,13 +1003,13 @@
                                                     </div>
                                                 </div>
 
-                                            	<div class="col-sm-6">
+                                                <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_phone">Rooms: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup ="alphaOnly(this)"
+                                                        <input pattern="\d*" maxlength="8"  
+                                                               onkeyup ="lettersOnly(this)"
                                                                id="ROOMS" 
-                                                               type="number" 
+                                                               type="text" 
                                                                name="ROOMS" 
                                                                class="form-control" 
                                                                placeholder="Please enter number of rooms *" 
@@ -1159,9 +1022,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-
-
-                                                    <div class="col-sm-5">
+                                                  <div class="col-sm-5">
                                                         <label class=" control-label" >Furnished: </label>
 
                                                         <select class ="form-control" id="FURNISHED" name="FURNISHED">
@@ -1169,7 +1030,7 @@
                                                             <option {{ $row->FURNISHED == 'No' ? 'selected':'' }}>No</option>
                                                         </select>
                                                         <div class="help-block with-errors"></div> 
-                                                    </div> 
+                                                  </div> 
 
                                                      <div class="col-sm-5">
                                                         <label class=" control-label" >Pool:</label>
@@ -1186,10 +1047,11 @@
                                         <div class="row">
                                             <div class="col-sm-5">
                                                     <div class="form-group">
-                                                        <l
-                                                        abel for="form_name">Customer ID: </label>
-                                                        <input pattern="\d*" maxlength="8" onkeypress="return inputAlphabet(event)" 
-                                                               onkeyup ="alphaOnly(this)" 
+                                                        <label for="form_name">Customer ID: </label>
+                                                        <input pattern="\d*" 
+                                                               maxlength="8" 
+                                                               onkeypress="return isNumberKey(event)" 
+                                                               onkeyup ="lettersOnly(this)" 
                                                                id="CUSTOMER_ID" 
                                                                type="text" 
                                                                name="CUSTOMER_ID" 
@@ -1198,37 +1060,22 @@
                                                                required="required" 
                                                                data-error="Customer ID is required." 
                                                                required oninvalid="setCustomValidity('Please enter an existing customer ID ')" 
-                                                               onchange="try{setCustomValidity('')}catch(e){}"
-                                                               onkeypress="return isNumberKey(event)" 
-                                                               onkeyup="lettersOnly(this)">
+                                                               onchange="try{setCustomValidity('')}catch(e){}">
+                                                               
+                                                      
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                    <div class="form-group">
-                                                        <label for="form_message">Picture: </label>                         
-                                                            
-                                                            <input id="PICTURE" 
-                                                               type="file" 
-                                                               name="PICTURE"  
-                                                               placeholder="Browse image"    
-                                                               value="{{$row->PICTURE}}"
-                                                               required="required" 
-                                                               data-error="Pictre is required." 
-                                                            >
-
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>
-                                            </div>
+                                       
+                                           
                                         <div class="row">
                                             <div class="col-sm-5">
                                                 <div class="form-group">
                                                         <label for="form_message">Date Submitted: </label>
-                                                        <input id="DATE_SUBMITTED" 
+                                                        <input id="DATE_SUBMITTED2" 
                                                                type="DATE" 
-                                                               name="DATE_SUBMITTED" 
+                                                               name="DATE_SUBMITTED2" 
                                                                class="form-control" 
                                                                placeholder="Please enter date *" 
                                                                required="required" 
@@ -1237,51 +1084,69 @@
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
-
-                                            </div>
-                                          
-        								</div>
-                                     
-                                        <div class="container col-md-12" style="background-color:#f1f1f1; padding: 16px;">
-                                            <div class="col-md-4" style="float: left;">
-                                                <button type="button" 
-                                                		onclick="document.getElementById('id03{{$row->PROPERTY_ID}}').style.display='none'" 
-                                                		class="cancelbtn">Cancel</button>
-                                            </div>
-
-                                            <div class="col-md-4" align="center">
-                                                <input id="submition" 
-                                                	   type="submit" 
-                                                	   class="btn btn-black" 
-                                                	   align="center" 
-                                                	   value="Save" 
-                                                	   style="font-size: 20px; background: transparent; border-color: #f4511e;">
-                                            </div>
-                                            <div class="col-md-4" 
-                                            	 style="float: left;">
-                                                <input name="ID" 
-                                                	   id="ID" 
-                                                	   class="hidden ID" 
-                                                	   value="{{$row->PROPERTY_ID}}">
-                                            </div>
+                                            </div>     
                                         </div>
-
+                                     
+                                        
+                                            <div class="modal-footer">
+                                                <input id="submition" type="submit" class="btn btn-primary" align="center" value="Add">
+                                                <input name="ID" id="ID" class="hidden ID" value="{{$row->PROPERTY_ID}}">
+                                            </div>
                                     </form>
-                               
+                                </div>
                             </div>
-                    	</div>
-                    
-                         </tbody>
+                        </tbody>
                     </table>
-                    </div>
-                    
+                    </div>           
                     </div>
                 </div>
             </div>
         </div>
-	</body>
-</html>
+
+</body>
+
+
  <script type="text/javascript">
+
+   $(document).on('click', '.editpro', function() {
+            $('#PROPERTY_ID0').val($(this).data('proid'));
+            $('#AVAILABLE_FOR1').val($(this).data('available_for'));
+            $('#TYPE1').val($(this).data('type'));
+            $('#SUBTYPE1').val($(this).data('subtype'));
+            $('#TOWN1').val($(this).data('town'));
+            $('#AREA1').val($(this).data('area'));
+            $('#PRICE1').val($(this).data('price'));
+            $('#SQUARE_METERS1').val($(this).data('squaremet'));
+            $('#FLOORS1').val($(this).data('floors'));
+            $('#ROOMS1').val($(this).data('rooms'));
+            $('#FURNISHED1').val($(this).data('furnished'));
+            $('#POOL1').val($(this).data('pool'));
+            $('#DATE_SUBMITTED1').val($(this).data('date_submited'));
+            $('#CUSTOMER_ID1').val($(this).data('customer_id'));
+            
+            $('#PROPERTY_ID1').val($(this).data('proid'));
+
+            $('#ProUpdate').modal('show');
+        });
+
+$(document).on('click', '.delPro', function() {
+
+      $('#PROPERTY_ID2').val($(this).data('proid'));
+      $('#CUSTOMER_ID2').val($(this).data('customer_id'));
+      $('#PROPERTY_ID21').val($(this).data('proid'));
+        $('#ProDestroy').modal('show');
+ });
+
+
+
+     $(document).on('click', '.addpro', function() {
+
+      
+        $('#ProAdd').modal('show');
+        });
+
+
+
   $("#PROPERTY_ID").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#submition").click();
@@ -1364,7 +1229,7 @@ $("#POOL").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#submition").click();
     }
-  
+  });
     $("#CUSTOMER_ID").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#submition").click();
@@ -1423,6 +1288,7 @@ $("#POOL").keyup(function(event) {
     $(".nav-tabs a").click(function() {
       $(this).tab('show');
     });
+
     $('.nav-tabs a').on('shown.bs.tab', function(event) {
       var x = $(event.target).text(); // active tab
       var y = $(event.relatedTarget).text(); // previous tab
@@ -1432,11 +1298,6 @@ $("#POOL").keyup(function(event) {
 
   });
 
-</script>
-
-
-
-<script>
 
   //var modal = document.getElementById('myModal');
 
@@ -1472,44 +1333,7 @@ span.onclick = function() {
     modal.style.display = "none";
 }
 */
-function login() {
-  var sign = document.getElementById('signin');
-  sign.classList.remove("hidden");
-}
 
-var slideIndex = 1;
-showSlides(slideIndex);
-  
-
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("demo");
-  var captionText = document.getElementById("caption");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  if(dots[slideIndex-1].alt!=""){
-  captionText.innerHTML = dots[slideIndex-1].alt;}
-}
 
   function btnminus(){
      var now = $(".m1").val();
@@ -1563,43 +1387,6 @@ function showSlides(n) {
                     $(".m3").val("1");
                 }
   } 
-$(document).ready(function(){
 
-
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-  
-  $(window).scroll(function() {
-    $(".slideanim").each(function(){
-      var pos = $(this).offset().top;
-
-      var winTop = $(window).scrollTop();
-        if (pos < winTop + 600) {
-          $(this).addClass("slide");
-        }
-    });
-  });
-})
 </script>
-
-
 
