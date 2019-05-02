@@ -30,16 +30,9 @@
   
     <section id="pinBoot">
 
-    @foreach($ARTICLE as $row)
-
-<!--"{{$row->IMAGE}}"-->
-<!--document.getElementById('imageBox').src = "img/apple_" + total + ".png";-->
-<!--<article class="white-panel"><img src="images/r+'$i'+.jpg" alt="">-->
-<!--<article class="white-panel"><img src="`images/${row->IMAGE}`" alt="">-->
-<!--<article class="white-panel"><img src="data:image/png;base64,{{ chunk_split(base64_encode($row->IMAGE)) }}" alt="">-->
-<!--<article class="white-panel"><img src= "'images/' + {{$row->IMAGE}}" alt="">-->
-    <article class="white-panel"><img src= "{{$row->IMAGE}}" alt="">
-    <h4>{{$row->TITLE}}</h4>
+    @foreach($image_gallery_articles as $row)
+    <article class="white-panel"><img src= "{{$row->image}}" alt="">
+    <h4>{{$row->title}}</h4>
     <p>{{$row->DATE}}</p>
     <p>{{$row->DOCUMENT}}</p>
   </article>
@@ -65,6 +58,7 @@
 </body>
 
 <script>
+
 
 $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
     // Make sure this.hash has a value before overriding default behavior
