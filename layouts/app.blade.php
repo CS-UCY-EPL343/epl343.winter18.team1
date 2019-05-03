@@ -34,9 +34,26 @@
     <script type="text/javascript">
         $(document).ready(function(){
             @if (Auth::guard('admin')->check()){
+                document.getElementById("hom").href="admin/home";
+                document.getElementById("buy").href="admin/BuyRent";
+                document.getElementById("sel").href="admin/SellLet";
+                document.getElementById("abo").href="admin/about";
+                document.getElementById("con").href="admin/contact";
+                document.getElementById("new").href="admin/news";
+
+                document.getElementById("art").href="admin/articles";
+                document.getElementById("pro").href="admin/property";
+                document.getElementById("cus").href="admin/customers";
+                document.getElementById("emp").href="admin/employees";
+                document.getElementById("col").href="admin/collaborators";
                 document.getElementById("noti").href="admin/notifications";
+                document.getElementById("rig").href="admin/rights";
             }
-            @endif
+            @endif  
+        });
+
+        $(function() {
+          $('[autofocus]:not(:focus)').eq(0).focus();
         });
     </script>
 </body>
