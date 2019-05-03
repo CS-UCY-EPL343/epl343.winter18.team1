@@ -173,13 +173,25 @@
                             </tr>
 
 
-                            <div id="id04{{$row->PROPERTY_ID}}" 
-                                 class="modal slmodal">
-                                <div class="modal-content animate" 
-                                     name="slmodal">
- 
 
-                                    <h3>Image Gallery</h3>
+                            <div id="id04{{$row->PROPERTY_ID}}" 
+                                 class="modal slmodal" 
+                                
+                                 >
+                                <div class="modal-dialog" style="width: 1500px;"  id="modalwindow">
+                                 <div class="modal-content"  role="dialog">
+
+                                    <div class="modal-header">
+
+                                    	<h4 class="modal-id" id="ID" style="width: 10%; float: left; margin-top: -5px;"></h4>
+                        				<h4 class="modal-title" style="margin-top: -5px;"></h4>
+
+                                        <button type="button" class="close" data-dismiss="modal" id="closebutton" aria-hidden="true">&times;</button>
+
+                       				
+                                        <h3 class="text-center">Image Gallery</h3>
+                                    </div>
+ 
 
                                     <form action="image-gallery" 
                                           class="form-image-upload" 
@@ -314,22 +326,27 @@
 
 
 
-                                    <div class="container-fluid" style="background-color:#f1f1f1; padding: 0px;">
-                                                <div class="" 
-                                                     style="float: center;">
-                                                    <button type="button" 
+                                    <div class="container-fluid" style=" padding: 0px;">
+                                                <div class="col-md-2" 
+                                                     style="float: left;">
+                                                    <button type="submit" 
                                                             onclick="document.getElementById('id04{{$row->PROPERTY_ID}}').style.display='none'" 
-                                                            class="cancelbtn"
+                                                            class="btn btn-primary"
                                                             align="center" 
-                                                            style="font-size: 20px; background: transparent; border-color: #f4511e;">Back</button>
+                                                            >Cancel</button>
                                                 </div>
 
                                                
                                     </div> 
+
+									
+
+
                                     </form>
                                      
                                  </div>    
                             </div>   
+                        </div>
 <!--------- END OF IMAGE GALLERY---->
 
 
@@ -1105,7 +1122,17 @@
 
 </body>
 
+<script type="text/javascript">
+	
+	$(document).ready(function(){
 
+    $('#closebutton').on('click', function(){
+    	
+    $('modalwindow' ).close();
+    });
+    
+  });
+</script>>
  <script type="text/javascript">
 
    $(document).on('click', '.editpro', function() {
@@ -1136,7 +1163,6 @@ $(document).on('click', '.delPro', function() {
       $('#PROPERTY_ID21').val($(this).data('proid'));
         $('#ProDestroy').modal('show');
  });
-
 
 
      $(document).on('click', '.addpro', function() {
