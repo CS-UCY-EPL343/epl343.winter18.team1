@@ -37,6 +37,7 @@
                                 <th>Address</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
+
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></th>
                                 <th style="background: none; cursor: default; text-align: center;"><i class="fa fa-trash-o" aria-hidden="true" style="color: red;"></i></th>
                             </tr>
@@ -52,9 +53,28 @@
                                 <td>{{$row->PHONENUMBER}}</td>
                                 
 
-                                 <td style="text-align: center;"><i id="editcoll" class="fa fa-pencil-square-o editcoll" data-license="{{$row->NoLicense}}" data-firstname="{{$row->NAME }}" data-surnname="{{$row->SURNAME}}" data-phonenumber="{{$row->PHONENUMBER}}"data-email="{{$row->EMAIL}}" data-address="{{$row->ADDRESS}}"   aria-hidden="true" style="cursor: pointer;"></i></td>
+                                 <td style="text-align: center;">
+                                 	<i id="editcoll" class="fa fa-pencil-square-o editcoll" 
+                                 	data-license="{{$row->NoLicense}}" 
+                                 	data-firstname="{{$row->NAME }}" 
+                                 	data-surnname="{{$row->SURNAME}}" 
+                                 	data-phonenumber="{{$row->PHONENUMBER}}"
+                                 	data-email="{{$row->EMAIL}}" 
+                                 	data-address="{{$row->ADDRESS}}"   
+                                 	aria-hidden="true" 
+                                 	style="cursor: pointer;"></i></td>
 
-                                 <td style="text-align: center;"><i id="delcoll" class="fa fa-trash-o delcoll" data-license="{{$row->NoLicense}}" data-firstname="{{$row->NAME }}" data-surnname="{{$row->SURNAME}}" data-phonenumber="{{$row->PHONENUMBER}}"data-email="{{$row->EMAIL}}" data-address="{{$row->ADDRESS}}" aria-hidden="true" style="cursor: pointer; color: red;"></i></td>
+                                 <td style="text-align: center;">
+                                 	<i id="delcoll" 
+                                 	class="fa fa-trash-o delcoll" 
+                                 	data-license="{{$row->NoLicense}}" 
+                                 	data-firstname="{{$row->NAME }}" 
+                                 	data-surnname="{{$row->SURNAME}}" 
+                                 	data-phonenumber="{{$row->PHONENUMBER}}"
+                                 	data-email="{{$row->EMAIL}}" 
+                                 	data-address="{{$row->ADDRESS}}" 
+                                 	aria-hidden="true" 
+                                 	style="cursor: pointer; color: red;"></i></td>
                             </tr>
                            <div ID="CollUpdate" class="modal fade" role="dialog">
                              <div class="modal-dialog" style="width: 900px;">
@@ -72,7 +92,7 @@
                                              <div class="col-sm-3">
                                                 <div class="form-group">
                                                         <label for="NoLicense">No License</label>
-                                                        <input id="NoLicense0" type="text" name="NoLicense0" class="form-control" placeholder="Please enter the License Number" required="required" data-error="License Number is required." disabled>
+                                                        <input id="NoLicense0" type="text" name="NoLicense0" class="form-control" required="required" disabled>
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
@@ -112,12 +132,12 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="form_email">Address</label>
-                                                        <input id="ADDRESS1" type="text"  maxlength ="50"name="ADDRESS1" class="form-control" placeholder="Please enter address *" required="required" data-error="Valid address is required." >
+                                                        <input id="ADDRESS1" type="text" maxlength ="50" name="ADDRESS1" class="form-control" placeholder="Please enter address *" required="required" data-error="Valid address is required." >
                                                         <div class="help-block with-errors"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                     	</div>
                                                               
                                             <div class="modal-footer">
                                                 <input id="editsubmit" type="submit" class="btn btn-primary editsubmit" align="center" value="Save">
